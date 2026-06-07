@@ -2,19 +2,19 @@
 .blob-input-wrapper {
   display:        flex;
   flex-direction: column;
-  gap:            0.25rem;
+  gap:            var(--space-1);
   width:          100%;
 }
 
 /* Label ----------------------------------------------------------------- */
 .blob-input-label {
-  font-family: var(--font-human, sans-serif);
-  font-size:   0.8125rem;
+  font-family: var(--font-display, sans-serif);
+  font-size:   var(--text-ui-sm);
   font-weight: 500;
   color:       var(--color-text-primary, #000);
   line-height: 1.4;
 }
-.blob-input--error  .blob-input-label  { color: #dc2626; }
+.blob-input--error  .blob-input-label  { color: var(--color-destructive-text); }
 
 /* Field row (icon + input + action) ------------------------------------- */
 .blob-input-row {
@@ -28,14 +28,14 @@
   overflow:         hidden;
 }
 .blob-input-row:focus-within {
-  border-color: var(--color-primary, #000);
-  box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-primary, #000) 15%, transparent);
+  border-color: var(--color-accent-primary, #000);
+  box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-accent-primary, #000) 15%, transparent);
 }
 .blob-input--error  .blob-input-row {
-  border-color: #dc2626;
+  border-color: var(--color-destructive-accent);
 }
 .blob-input--error  .blob-input-row:focus-within {
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-destructive-accent) 15%, transparent);
 }
 .blob-input--disabled .blob-input-row {
   background-color: var(--color-surface, #f5f5f5);
@@ -48,13 +48,13 @@
   display:     flex;
   align-items: center;
   flex-shrink: 0;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
-  padding:     0 0.5rem;
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
+  padding:     0 var(--space-2);
 }
 .blob-input-icon svg,
 .blob-input-icon img {
-  width:  1rem;
-  height: 1rem;
+  width:  var(--icon-sm);
+  height: var(--icon-sm);
 }
 
 /* Action slot (right side) — e.g. a Button component ------------------- */
@@ -71,22 +71,23 @@
   background:       transparent;
   border:           none;
   outline:          none;
-  font-family:      var(--font-human, sans-serif);
-  color:            var(--color-text-default, #000);
-  caret-color:      var(--color-primary, #000);
+  font-family:      var(--font-display, sans-serif);
+  font-size:        var(--text-ui-sm);
+  padding:          var(--space-2) var(--space-3);
+  color:            var(--color-text-secondary, #000);
+  caret-color:      var(--color-accent-primary, #000);
   min-width:        0;
 }
 .blob-input-field::placeholder {
-  color: var(--color-text-subtle, rgba(0,0,0,0.4));
+  color: var(--color-text-tertiary, rgba(0,0,0,0.4));
 }
 
 /* Helper / error text --------------------------------------------------- */
 .blob-input-helper {
-  font-family: var(--font-human, sans-serif);
-  font-size:   0.75rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  font-family: var(--font-display, sans-serif);
+  font-size:   var(--text-ui-xs);
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
   line-height: 1.4;
 }
-.blob-input--error .blob-input-helper {
-  color: #dc2626;
-}
+.blob-input--error .blob-input-helper,
+.blob-input-helper--error { color: var(--color-destructive-text); }

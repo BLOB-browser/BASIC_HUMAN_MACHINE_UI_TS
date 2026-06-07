@@ -1,23 +1,5 @@
 /**
  * BHMUI theme runtime — applies a theme as CSS custom properties.
- *
- * applyTheme()  — writes CSS vars for color, font-family, radius, and shadow
- *                 onto a target element (default: document.documentElement).
- *                 Passing a specific element scopes the vars to that subtree,
- *                 which is how the webbuilder isolates its own chrome from the
- *                 user's project canvas.
- *
- * detectMode()  — reads OS colour-scheme preference at call time.
- *
- * CSS custom properties written by applyTheme():
- *   --font-human, --font-display, --font-machine
- *   --color-primary, --color-on-primary
- *   --color-secondary, --color-background
- *   --color-surface, --color-surface-elevated
- *   --color-border
- *   --color-text-primary, --color-text-default, --color-text-subtle
- *   --radius-s, --radius-m, --radius-l, --radius-xl, --radius-full
- *   --shadow-sm, --shadow-md
  */
 
 import { themes }  from '../themes';
@@ -25,20 +7,15 @@ import type { ThemeName, ThemeColorSet } from '../themes/types';
 
 export type ColorMode = 'light' | 'dark';
 
-/** Returns the OS colour-scheme preference. Re-evaluated on every call. */
 export function detectMode(): ColorMode {
   if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-/**
- * Apply a BHMUI theme to a DOM element.
- *
- * @param themeName  — one of the 6 built-in theme names
- * @param mode       — 'light' | 'dark' (use detectMode() for OS preference)
- * @param target     — element to scope the CSS vars on (default: document.documentElement)
- * @param overrides  — project-level CSS var overrides, e.g. { '--color-primary': '#e63946' }
- */
+function set(el: HTMLElement, prop: string, val: string) {
+  el.style.setProperty(prop, val);
+}
+
 export function applyTheme(
   themeName: ThemeName,
   mode: ColorMode = 'light',
@@ -51,39 +28,82 @@ export function applyTheme(
     return;
   }
 
-  const colors: ThemeColorSet = theme.colors[mode];
+  const c: ThemeColorSet = theme.colors[mode];
 
   // Fonts
-  target.style.setProperty('--font-human',   theme.fonts.human);
-  target.style.setProperty('--font-display', theme.fonts.display);
-  target.style.setProperty('--font-machine', theme.fonts.machine);
+  set(target, '--font-human',   theme.fonts.human);
+  set(target, '--font-display', theme.fonts.display);
+  set(target, '--font-machine', theme.fonts.machine);
 
-  // Colors
-  target.style.setProperty('--color-primary',          colors.primary);
-  target.style.setProperty('--color-on-primary',       colors.onPrimary);
-  target.style.setProperty('--color-secondary',        colors.secondary);
-  target.style.setProperty('--color-background',       colors.background);
-  target.style.setProperty('--color-surface',          colors.surface);
-  target.style.setProperty('--color-surface-elevated', colors.surfaceElevated);
-  target.style.setProperty('--color-surface-sunken',   colors.surfaceSunken);
-  target.style.setProperty('--color-border',           colors.border);
-  target.style.setProperty('--color-text-primary',     colors.textPrimary);
-  target.style.setProperty('--color-text-default',     colors.textDefault);
-  target.style.setProperty('--color-text-subtle',      colors.textSubtle);
+  // Surfaces
+  set(target, '--color-bg',                c.bg);
+  set(target, '--color-surface',           c.surface);
+  set(target, '--color-surface-negative',  c.surfaceNegative);
+  set(target, '--color-surface-elevated',  c.surfaceElevated);
+  set(target, '--color-border',            c.border);
+  set(target, '--color-border-subtle',     c.borderSubtle);
+  set(target, '--color-overlay',           c.overlay);
+
+  // Text
+  set(target, '--color-text-primary',              c.textPrimary);
+  set(target, '--color-text-secondary',             c.textSecondary);
+  set(target, '--color-text-tertiary',              c.textTertiary);
+  set(target, '--color-text-on-accent-primary',     c.textOnAccentPrimary);
+  set(target, '--color-text-on-accent-secondary',   c.textOnAccentSecondary);
+  set(target, '--color-text-inverted',              c.textInverted);
+
+  // Brand accents
+  set(target, '--color-accent-primary',          c.accentPrimary);
+  set(target, '--color-accent-primary-subtle',   c.accentPrimarySubtle);
+  set(target, '--color-accent-primary-text',     c.accentPrimaryText);
+  set(target, '--color-accent-secondary',        c.accentSecondary);
+  set(target, '--color-accent-secondary-subtle', c.accentSecondarySubtle);
+  set(target, '--color-accent-secondary-text',   c.accentSecondaryText);
+
+  // Semantic: warning
+  set(target, '--color-warning-text',    c.warningText);
+  set(target, '--color-warning-accent',  c.warningAccent);
+  set(target, '--color-warning-surface', c.warningSurface);
+
+  // Semantic: success
+  set(target, '--color-success-text',    c.successText);
+  set(target, '--color-success-accent',  c.successAccent);
+  set(target, '--color-success-surface', c.successSurface);
+
+  // Semantic: info
+  set(target, '--color-info-text',    c.infoText);
+  set(target, '--color-info-accent',  c.infoAccent);
+  set(target, '--color-info-surface', c.infoSurface);
+
+  // Semantic: destructive
+  set(target, '--color-destructive-text',    c.destructiveText);
+  set(target, '--color-destructive-accent',  c.destructiveAccent);
+  set(target, '--color-destructive-surface', c.destructiveSurface);
+
+  // User colors
+  for (let i = 1; i <= 6; i++) {
+    const n = i as 1|2|3|4|5|6;
+    set(target, `--color-user${n}-text`,    c[`user${n}Text`]);
+    set(target, `--color-user${n}-accent`,  c[`user${n}Accent`]);
+    set(target, `--color-user${n}-surface`, c[`user${n}Surface`]);
+  }
 
   // Radius
-  target.style.setProperty('--radius-s',    theme.radius.s);
-  target.style.setProperty('--radius-m',    theme.radius.m);
-  target.style.setProperty('--radius-l',    theme.radius.l);
-  target.style.setProperty('--radius-xl',   theme.radius.xl);
-  target.style.setProperty('--radius-full', theme.radius.full);
+  set(target, '--radius-s',    theme.radius.s);
+  set(target, '--radius-m',    theme.radius.m);
+  set(target, '--radius-l',    theme.radius.l);
+  set(target, '--radius-xl',   theme.radius.xl);
+  set(target, '--radius-full', theme.radius.full);
 
   // Shadow
-  target.style.setProperty('--shadow-sm', theme.shadow.sm);
-  target.style.setProperty('--shadow-md', theme.shadow.md);
+  set(target, '--shadow-sm', theme.shadow.sm);
+  set(target, '--shadow-md', theme.shadow.md);
+  set(target, '--shadow-lg', theme.shadow.lg);
+  set(target, '--shadow-xl', theme.shadow.xl);
 
-  // Project-level overrides (user customisation via Token Editor)
+  // Overrides
   for (const [prop, value] of Object.entries(overrides)) {
-    target.style.setProperty(prop, value);
+    set(target, prop, value);
   }
 }
+

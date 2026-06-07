@@ -4,11 +4,11 @@
   gap:           0.75rem;
   border-radius: var(--radius-m, 6px);
   padding:       0.875rem 1rem;
-  font-family:   var(--font-human, sans-serif);
+  font-family:   var(--font-display, sans-serif);
   font-size:     0.875rem;
   border:        1px solid transparent;
   background:    var(--color-surface, #f5f5f5);
-  color:         var(--color-text-default, rgba(0,0,0,0.8));
+  color:         var(--color-text-secondary, rgba(0,0,0,0.8));
 }
 
 /* Slots */
@@ -48,7 +48,7 @@
   padding:      0.25rem;
   transition:   opacity 0.1s ease, background 0.1s ease;
 }
-.blob-alert__dismiss:hover  { opacity: 1; background: rgba(0,0,0,0.08); }
+.blob-alert__dismiss:hover  { opacity: 1; background: var(--color-surface-negative); }
 .blob-alert__dismiss:focus-visible {
   outline:        2px solid currentColor;
   outline-offset: 1px;
@@ -56,29 +56,22 @@
 
 /* Variants */
 .blob-alert--info {
-  background:   #eff6ff;
-  border-color: #bfdbfe;
-  color:        #1e40af;
+  background:   var(--color-info-surface);
+  border-color: var(--color-info-accent);
+  color:        var(--color-info-text);
 }
 .blob-alert--success {
-  background:   #f0fdf4;
-  border-color: #bbf7d0;
-  color:        #166534;
+  background:   var(--color-success-surface);
+  border-color: var(--color-success-accent);
+  color:        var(--color-success-text);
 }
 .blob-alert--warning {
-  background:   #fffbeb;
-  border-color: #fde68a;
-  color:        #92400e;
+  background:   var(--color-warning-surface);
+  border-color: var(--color-warning-accent);
+  color:        var(--color-warning-text);
 }
 .blob-alert--error {
-  background:   #fef2f2;
-  border-color: #fecaca;
-  color:        #991b1b;
-}
-
-@media (prefers-color-scheme: dark) {
-  .blob-alert--info    { background: rgba(30,64,175,0.15); border-color: rgba(30,64,175,0.4); color: #93c5fd; }
-  .blob-alert--success { background: rgba(22,101,52,0.15); border-color: rgba(22,101,52,0.4); color: #86efac; }
-  .blob-alert--warning { background: rgba(146,64,14,0.15); border-color: rgba(146,64,14,0.4); color: #fde047; }
-  .blob-alert--error   { background: rgba(153,27,27,0.15); border-color: rgba(153,27,27,0.4); color: #fca5a5; }
+  background:   var(--color-destructive-surface);
+  border-color: var(--color-destructive-accent);
+  color:        var(--color-destructive-text);
 }

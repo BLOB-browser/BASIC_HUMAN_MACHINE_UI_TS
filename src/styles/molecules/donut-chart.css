@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap:         0.75rem;
-  font-family: var(--font-human, sans-serif);
+  font-family: var(--font-display, sans-serif);
 }
 
 /* SVG wrapper — needed for the center overlay */
@@ -39,7 +39,7 @@
 .blob-donut-chart__center-label {
   display:   block;
   font-size: 0.75rem;
-  color:     var(--color-text-subtle, rgba(0,0,0,0.45));
+  color:     var(--color-text-tertiary, rgba(0,0,0,0.45));
   margin-top: 0.25rem;
 }
 
@@ -55,7 +55,7 @@
   align-items: center;
   gap:         0.375rem;
   font-size:   0.75rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
 }
 .blob-donut-chart__swatch {
   width:         10px;

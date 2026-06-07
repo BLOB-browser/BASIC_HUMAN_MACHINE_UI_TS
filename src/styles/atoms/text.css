@@ -27,13 +27,13 @@
 .blob-text--h5     { color: var(--color-text-primary, #000); }
 
 .blob-text--body,
-.blob-text--body-sm { color: var(--color-text-default, rgba(0,0,0,0.8)); }
+.blob-text--body-sm { color: var(--color-text-secondary, rgba(0,0,0,0.8)); }
 
 .blob-text--caption,
-.blob-text--overline { color: var(--color-text-subtle, rgba(0,0,0,0.45)); }
+.blob-text--overline { color: var(--color-text-tertiary, rgba(0,0,0,0.45)); }
 
 .blob-text--code {
-  color:         var(--color-text-default, rgba(0,0,0,0.8));
+  color:         var(--color-text-secondary, rgba(0,0,0,0.8));
   background:    var(--color-surface-elevated, #f0f0f0);
   padding:       0.15em 0.4em;
   border-radius: var(--radius-s, 3px);
@@ -46,9 +46,9 @@
 }
 
 /* Explicit colour overrides */
-.blob-text--color-default { color: var(--color-text-default, rgba(0,0,0,0.8)); }
-.blob-text--color-subtle  { color: var(--color-text-subtle,  rgba(0,0,0,0.45)); }
-.blob-text--color-primary { color: var(--color-primary, #000); }
-.blob-text--color-success { color: #16a34a; }
-.blob-text--color-warning { color: #d97706; }
-.blob-text--color-danger  { color: #dc2626; }
+.blob-text--color-default { color: var(--color-text-secondary, rgba(0,0,0,0.8)); }
+.blob-text--color-subtle  { color: var(--color-text-tertiary,  rgba(0,0,0,0.45)); }
+.blob-text--color-primary { color: var(--color-accent-primary, #000); }
+.blob-text--color-success { color: var(--color-success-text); }
+.blob-text--color-warning { color: var(--color-warning-text); }
+.blob-text--color-danger  { color: var(--color-destructive-text); }

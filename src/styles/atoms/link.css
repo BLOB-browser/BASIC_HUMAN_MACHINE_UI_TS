@@ -1,0 +1,40 @@
+/* Link atom — text link with consistent hover/focus behaviour. */
+.blob-link {
+  color:           var(--color-accent-primary-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor:          pointer;
+  font-family:     inherit;
+  font-size:       inherit;
+  background:      none;
+  border:          none;
+  padding:         0;
+  transition:      opacity 0.15s ease, color 0.15s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.blob-link:hover  { opacity: 0.75; }
+.blob-link:active { opacity: 0.55; }
+.blob-link:focus-visible {
+  outline:        2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+  border-radius:  var(--radius-s);
+}
+
+/* Variants */
+.blob-link--subtle {
+  color:           var(--color-text-secondary);
+  text-decoration: none;
+}
+.blob-link--subtle:hover {
+  color:           var(--color-text-primary);
+  text-decoration: underline;
+  opacity:         1;
+}
+
+.blob-link--danger {
+  color: var(--color-destructive-text);
+}
+
+/* No underline modifier */
+.blob-link--no-underline { text-decoration: none; }
+.blob-link--no-underline:hover { text-decoration: underline; }

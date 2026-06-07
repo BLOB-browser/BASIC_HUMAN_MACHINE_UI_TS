@@ -1,0 +1,13 @@
+/* BHMUI base — smooth theme transitions.
+ * Import this separately from index.css, AFTER it, to avoid postcss-import
+ * ordering issues.
+ *
+ * Usage: import '@building-local-open-bots/ui/styles/base' at app boot,
+ *         after '@building-local-open-bots/ui/styles'.
+ */
+body {
+  background-color: var(--color-bg);
+  color:            var(--color-text-primary);
+  font-family:      var(--font-display, sans-serif);
+  transition:       background-color 0.2s ease, color 0.2s ease, font-family 0.1s ease;
+}

@@ -1,0 +1,115 @@
+/* Base ------------------------------------------------------------------ */
+.blob-chip {
+  display:         inline-flex;
+  align-items:     center;
+  border-radius:   var(--radius-full, 9999px);
+  font-family:     var(--font-display, sans-serif);
+  font-weight:     500;
+  line-height:     1;
+  white-space:     nowrap;
+  user-select:     none;
+  border:          1px solid transparent;
+  transition:      background-color 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Icon slot ------------------------------------------------------------- */
+.blob-chip__icon {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.blob-chip__icon svg,
+.blob-chip__icon img {
+  width:  0.75rem;
+  height: 0.75rem;
+}
+
+/* Remove button --------------------------------------------------------- */
+.blob-chip__remove {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  background:       none;
+  border:           none;
+  padding:          0;
+  margin-left:      0.125rem;
+  cursor:           pointer;
+  color:            inherit;
+  opacity:          0.6;
+  line-height:      1;
+  font-size:        0.875rem;
+  font-family:      inherit;
+  border-radius:    var(--radius-full, 9999px);
+  transition:       opacity 0.1s ease;
+}
+.blob-chip__remove:hover { opacity: 1; }
+.blob-chip__remove:focus-visible {
+  outline:        2px solid currentColor;
+  outline-offset: 1px;
+  opacity:        1;
+}
+
+/* Interactive ----------------------------------------------------------- */
+.blob-chip--interactive {
+  cursor: pointer;
+}
+.blob-chip--interactive:hover {
+  opacity: 0.80;
+}
+.blob-chip--interactive:active {
+  opacity: 0.65;
+}
+.blob-chip--interactive:focus-visible {
+  outline:        2px solid var(--color-accent-primary, #000);
+  outline-offset: 2px;
+}
+.blob-chip--interactive.blob-chip--active {
+  background-color: var(--color-accent-primary, #000);
+  color:            var(--color-text-on-accent-primary);
+  border-color:     var(--color-accent-primary, #000);
+  opacity:          1;
+}
+
+/* Variants -------------------------------------------------------------- */
+.blob-chip--default {
+  background-color: var(--color-surface);
+  color:            var(--color-text-secondary);
+  border-color:     var(--color-border);
+}
+
+.blob-chip--primary {
+  background-color: var(--color-accent-primary);
+  color:            var(--color-text-on-accent-primary);
+  border-color:     var(--color-accent-primary);
+}
+
+.blob-chip--success {
+  background-color: var(--color-success-surface);
+  color:            var(--color-success-text);
+  border-color:     var(--color-success-accent);
+}
+
+.blob-chip--warning {
+  background-color: var(--color-warning-surface);
+  color:            var(--color-warning-text);
+  border-color:     var(--color-warning-accent);
+}
+
+.blob-chip--danger {
+  background-color: var(--color-destructive-surface);
+  color:            var(--color-destructive-text);
+  border-color:     var(--color-destructive-accent);
+}
+
+.blob-chip--ghost {
+  background-color: transparent;
+  color:            var(--color-text-primary);
+  border-color:     var(--color-border);
+}
+
+/* Size modifier (optional — default is already small) ------------------- */
+.blob-chip--md {
+  font-size: var(--text-ui-sm);
+  padding:   var(--space-5);
+}

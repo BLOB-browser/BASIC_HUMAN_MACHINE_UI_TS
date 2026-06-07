@@ -5,9 +5,9 @@
   gap:         0.5rem;
   cursor:      pointer;
   user-select: none;
-  font-family: var(--font-human, sans-serif);
+  font-family: var(--font-display, sans-serif);
   font-size:   0.875rem;
-  color:       var(--color-text-default, rgba(0,0,0,0.8));
+  color:       var(--color-text-secondary, rgba(0,0,0,0.8));
   line-height: 1.4;
 }
 .blob-checkbox--disabled { opacity: 0.4; cursor: not-allowed; }
@@ -48,13 +48,13 @@
 
 /* Checked */
 .blob-checkbox__input:checked ~ .blob-checkbox__box {
-  background:   var(--color-primary, #000);
-  border-color: var(--color-primary, #000);
+  background:   var(--color-accent-primary, #000);
+  border-color: var(--color-accent-primary, #000);
 }
 /* Indeterminate */
 .blob-checkbox__input:indeterminate ~ .blob-checkbox__box {
-  background:   var(--color-primary, #000);
-  border-color: var(--color-primary, #000);
+  background:   var(--color-accent-primary, #000);
+  border-color: var(--color-accent-primary, #000);
 }
 
 /* Check icon (hidden by default, visible when checked) */
@@ -62,7 +62,7 @@
   display:  none;
   width:    10px;
   height:   10px;
-  color:    var(--color-on-primary, #fff);
+  color:    var(--color-text-on-accent-primary);
   flex-shrink: 0;
 }
 .blob-checkbox__input:checked ~ .blob-checkbox__box .blob-checkbox__check {
@@ -74,7 +74,7 @@
   display:       none;
   width:         10px;
   height:        2px;
-  background:    var(--color-on-primary, #fff);
+  background:    var(--color-text-on-accent-primary);
   border-radius: 1px;
   flex-shrink:   0;
 }
@@ -87,13 +87,13 @@
 
 /* Focus ring on the visual box */
 .blob-checkbox__input:focus-visible ~ .blob-checkbox__box {
-  outline:        2px solid var(--color-primary, #000);
+  outline:        2px solid var(--color-accent-primary, #000);
   outline-offset: 2px;
 }
 
 /* Error state */
 .blob-checkbox--error .blob-checkbox__box {
-  border-color: #dc2626;
+  border-color: var(--color-destructive-accent);
 }
 
 /* Helper / error text */
@@ -101,8 +101,6 @@
   display:     block;
   margin-top:  0.25rem;
   font-size:   0.75rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.45));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.45));
 }
-.blob-checkbox--error .blob-checkbox__helper {
-  color: #dc2626;
-}
+.blob-checkbox--error .blob-checkbox__helper { color: var(--color-destructive-text); }

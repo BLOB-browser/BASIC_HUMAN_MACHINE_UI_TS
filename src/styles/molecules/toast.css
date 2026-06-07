@@ -23,15 +23,15 @@
   display:          flex;
   align-items:      flex-start;
   gap:              0.625rem;
-  background-color: var(--color-background, #fff);
+  background-color: var(--color-surface);
   border:           1px solid var(--color-border, #e5e5e5);
-  border-left:      3px solid var(--color-primary, #000);
+  border-left:      3px solid var(--color-accent-primary, #000);
   border-radius:    var(--radius-m, 6px);
-  box-shadow:       0 4px 16px rgba(0,0,0,0.12);
+  box-shadow:       var(--shadow-md);
   padding:          0.75rem;
   pointer-events:   all;
   animation:        blob-toast-in 0.2s ease;
-  font-family:      var(--font-human, sans-serif);
+  font-family:      var(--font-display, sans-serif);
   -webkit-font-smoothing: antialiased;
   position:         relative;
   overflow:         hidden;
@@ -70,7 +70,7 @@
 }
 .blob-toast__message {
   font-size:   0.8125rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
   line-height: 1.4;
 }
 .blob-toast__dismiss {
@@ -81,7 +81,7 @@
   background:   transparent;
   border:       none;
   cursor:       pointer;
-  color:        var(--color-text-subtle, rgba(0,0,0,0.4));
+  color:        var(--color-text-tertiary, rgba(0,0,0,0.4));
   border-radius: var(--radius-s, 3px);
   padding:      0.25rem;
   transition:   color 0.1s ease, background 0.1s ease;
@@ -105,10 +105,10 @@
 }
 
 /* Variant accents */
-.blob-toast--info    { border-left-color: #3b82f6; color: #1d4ed8; }
-.blob-toast--success { border-left-color: #22c55e; color: #15803d; }
-.blob-toast--warning { border-left-color: #f59e0b; color: #a16207; }
-.blob-toast--error   { border-left-color: #ef4444; color: #b91c1c; }
+.blob-toast--info    { border-left-color: var(--color-info-accent);        color: var(--color-info-text); }
+.blob-toast--success { border-left-color: var(--color-success-accent);     color: var(--color-success-text); }
+.blob-toast--warning { border-left-color: var(--color-warning-accent);     color: var(--color-warning-text); }
+.blob-toast--error   { border-left-color: var(--color-destructive-accent); color: var(--color-destructive-text); }
 
 .blob-toast--info    .blob-toast__title,
 .blob-toast--success .blob-toast__title,

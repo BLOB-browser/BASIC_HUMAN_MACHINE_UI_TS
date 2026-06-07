@@ -7,7 +7,7 @@
   margin:     0;
   padding:    0;
   gap:        0.25rem;
-  font-family: var(--font-human, sans-serif);
+  font-family: var(--font-display, sans-serif);
   font-size:  0.8125rem;
   -webkit-font-smoothing: antialiased;
 }
@@ -21,7 +21,7 @@
 
 /* Link */
 .blob-breadcrumb__link {
-  color:           var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:           var(--color-text-tertiary, rgba(0,0,0,0.5));
   text-decoration: none;
   border-radius:   var(--radius-s, 3px);
   padding:         0.125rem 0.25rem;
@@ -32,7 +32,7 @@
   background: var(--color-surface, rgba(0,0,0,0.04));
 }
 .blob-breadcrumb__link:focus-visible {
-  outline:        2px solid var(--color-primary, #000);
+  outline:        2px solid var(--color-accent-primary, #000);
   outline-offset: 1px;
 }
 
@@ -57,7 +57,7 @@
 
 /* Separator */
 .blob-breadcrumb__sep {
-  color:       var(--color-text-subtle, rgba(0,0,0,0.35));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.35));
   user-select: none;
   line-height: 1;
 }

@@ -6,7 +6,7 @@
   text-align:     center;
   padding:        3rem 2rem;
   gap:            1rem;
-  font-family:    var(--font-human, sans-serif);
+  font-family:    var(--font-display, sans-serif);
 }
 .blob-empty-state--compact {
   padding: 1.5rem 1rem;
@@ -22,7 +22,7 @@
   height:          56px;
   border-radius:   50%;
   background:      var(--color-surface, rgba(0,0,0,0.04));
-  color:           var(--color-text-subtle, rgba(0,0,0,0.4));
+  color:           var(--color-text-tertiary, rgba(0,0,0,0.4));
   flex-shrink:     0;
 }
 .blob-empty-state--compact .blob-empty-state__icon {
@@ -42,7 +42,7 @@
 }
 .blob-empty-state__description {
   font-size:   0.875rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
   max-width:   320px;
   line-height: 1.5;
   margin:      0;

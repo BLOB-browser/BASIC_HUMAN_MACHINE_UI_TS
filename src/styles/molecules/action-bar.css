@@ -11,7 +11,7 @@
 /* Variants */
 .blob-action-bar--elevated {
   border-color: transparent;
-  box-shadow:   0 2px 8px rgba(0,0,0,0.12);
+  box-shadow:   var(--shadow-sm);
 }
 .blob-action-bar--ghost {
   background:   transparent;
@@ -21,9 +21,9 @@
 
 /* Hint slot (left text) */
 .blob-action-bar__hint {
-  font-family: var(--font-human, sans-serif);
+  font-family: var(--font-display, sans-serif);
   font-size:   0.8125rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
   white-space: nowrap;
   padding:     0 0.25rem;
 }

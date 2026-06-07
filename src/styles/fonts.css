@@ -1,0 +1,46 @@
+/* BHMUI — self-hosted fonts for all 6 built-in themes.
+ *
+ * Fonts are bundled via @fontsource npm packages — no internet required.
+ * Each @import loads the woff2 files from node_modules at build time.
+ *
+ * Import once at app boot, before index.css:
+ *   import '@building-local-open-bots/ui/styles/fonts'
+ *
+ * Theme → fonts:
+ *   classic       Roboto Serif / Roboto / Roboto Mono
+ *   international IBM Plex Serif / IBM Plex Sans / IBM Plex Mono
+ *   cofe          Libre Baskerville / Libre Franklin / Fira Code
+ *   funky         Noto Serif / Noto Sans / Noto Sans Mono
+ *   tech          Source Serif 4 / Source Sans 3 / Source Code Pro
+ *   edgy          PT Serif / PT Sans / PT Mono
+ */
+
+/* classic */
+@import '@fontsource-variable/roboto-serif';
+@import '@fontsource-variable/roboto';
+@import '@fontsource/roboto-mono';
+
+/* international */
+@import '@fontsource/ibm-plex-serif';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono';
+
+/* cofe */
+@import '@fontsource/libre-baskerville';
+@import '@fontsource-variable/libre-franklin';
+@import '@fontsource/fira-code';
+
+/* funky */
+@import '@fontsource-variable/noto-serif';
+@import '@fontsource-variable/noto-sans';
+@import '@fontsource/noto-sans-mono';
+
+/* tech */
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource-variable/source-sans-3';
+@import '@fontsource/source-code-pro';
+
+/* edgy */
+@import '@fontsource/pt-serif';
+@import '@fontsource/pt-sans';
+@import '@fontsource/pt-mono';

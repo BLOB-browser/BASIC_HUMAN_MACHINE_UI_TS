@@ -10,7 +10,7 @@
 }
 
 /* Shared color via custom property */
-.blob-sparkline { --blob-sparkline-color: var(--color-primary, #000); }
+.blob-sparkline { --blob-sparkline-color: var(--color-accent-primary, #000); }
 
 /* Line */
 .blob-sparkline__line {

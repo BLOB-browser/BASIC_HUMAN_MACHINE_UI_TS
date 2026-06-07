@@ -10,9 +10,9 @@
   display:         flex;
   justify-content: space-between;
   align-items:     baseline;
-  font-family:     var(--font-human, sans-serif);
+  font-family:     var(--font-display, sans-serif);
   font-size:       0.75rem;
-  color:           var(--color-text-subtle, rgba(0,0,0,0.45));
+  color:           var(--color-text-tertiary, rgba(0,0,0,0.45));
 }
 .blob-slider__value {
   font-weight: 500;
@@ -29,8 +29,8 @@
   /* Two-color gradient: before thumb = primary, after = track */
   background: linear-gradient(
     to right,
-    var(--color-primary, #000) 0%,
-    var(--color-primary, #000) var(--pct, 0%),
+    var(--color-accent-primary, #000) 0%,
+    var(--color-accent-primary, #000) var(--pct, 0%),
     var(--color-surface-elevated, #e5e5e5) var(--pct, 0%),
     var(--color-surface-elevated, #e5e5e5) 100%
   );
@@ -48,14 +48,14 @@
   width:         18px;
   height:        18px;
   border-radius: 50%;
-  background:    var(--color-primary, #000);
+  background:    var(--color-accent-primary, #000);
   cursor:        pointer;
   border:        2px solid white;
-  box-shadow:    0 1px 4px rgba(0,0,0,0.2);
+  box-shadow:    var(--shadow-sm);
   transition:    box-shadow 0.1s ease;
 }
 .blob-slider__input::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary, #000) 15%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent-primary, #000) 15%, transparent);
 }
 
 /* Thumb — moz */
@@ -63,10 +63,10 @@
   width:       18px;
   height:      18px;
   border-radius: 50%;
-  background:  var(--color-primary, #000);
+  background:  var(--color-accent-primary, #000);
   cursor:      pointer;
   border:      2px solid white;
-  box-shadow:  0 1px 4px rgba(0,0,0,0.2);
+  box-shadow:  var(--shadow-sm);
   box-sizing:  border-box;
 }
 
@@ -78,8 +78,8 @@
 
 /* Focus */
 .blob-slider__input:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 3px var(--color-background, #fff),
-              0 0 0 5px var(--color-primary, #000);
+  box-shadow: 0 0 0 3px var(--color-bg),
+              0 0 0 5px var(--color-accent-primary, #000);
 }
 
 /* Disabled */

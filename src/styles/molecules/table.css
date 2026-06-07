@@ -9,9 +9,9 @@
 .blob-table__el {
   width:           100%;
   border-collapse: collapse;
-  font-family:     var(--font-human, sans-serif);
+  font-family:     var(--font-display, sans-serif);
   font-size:       0.875rem;
-  color:           var(--color-text-default, rgba(0,0,0,0.8));
+  color:           var(--color-text-secondary, rgba(0,0,0,0.8));
   -webkit-font-smoothing: antialiased;
 }
 
@@ -49,7 +49,7 @@
 
 /* Selected row */
 .blob-table__row--selected {
-  background: color-mix(in srgb, var(--color-primary, #000) 8%, transparent) !important;
+  background: color-mix(in srgb, var(--color-accent-primary, #000) 8%, transparent) !important;
 }
 
 /* Checkbox cell */
@@ -59,13 +59,13 @@
 }
 .blob-table__checkbox-cell input[type="checkbox"] {
   cursor: pointer;
-  accent-color: var(--color-primary, #000);
+  accent-color: var(--color-accent-primary, #000);
 }
 
 /* Empty state row */
 .blob-table__empty-row td {
   text-align:  center;
   padding:     2rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.4));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.4));
   font-size:   0.875rem;
 }

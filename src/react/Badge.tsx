@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
 const badgeVariants = cva(
-  'blob-badge',
+  'blob-badge px-2 py-1 text-xs gap-1',
   {
     variants: {
       variant: {

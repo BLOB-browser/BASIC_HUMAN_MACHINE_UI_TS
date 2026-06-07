@@ -3,7 +3,7 @@
   flex-direction: column;
   gap:            0.75rem;
   width:          100%;
-  font-family:    var(--font-human, sans-serif);
+  font-family:    var(--font-display, sans-serif);
 }
 
 /* SVG */
@@ -22,9 +22,9 @@
   stroke: var(--color-border, #e5e5e5);
 }
 .blob-line-chart__tick-label {
-  font-family: var(--font-human, sans-serif);
+  font-family: var(--font-display, sans-serif);
   font-size:   11px;
-  fill:        var(--color-text-subtle, rgba(0,0,0,0.45));
+  fill:        var(--color-text-tertiary, rgba(0,0,0,0.45));
 }
 
 /* Lines */
@@ -55,7 +55,7 @@
   align-items: center;
   gap:         0.375rem;
   font-size:   0.75rem;
-  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  color:       var(--color-text-tertiary, rgba(0,0,0,0.5));
 }
 .blob-line-chart__swatch {
   width:         24px;

@@ -1,4 +1,5 @@
 import type { Theme } from './types';
+import { tw } from './tw';
 
 /**
  * Edgy — Sharp and architectural.
@@ -7,35 +8,103 @@ import type { Theme } from './types';
 export const edgy: Theme = {
   fonts: {
     human:   '"IBM Plex Serif", serif',
-    display: '"IBM Plex Sans", sans-serif',
+    display: '"IBM Plex Sans Variable", sans-serif',
     machine: '"IBM Plex Mono", monospace',
   },
   colors: {
     light: {
-      primary:         '#4f46e5',
-      onPrimary:       '#ffffff',
-      secondary:       '#d6d3d1',
-      background:      '#fafaf9',
-      surface:         '#ffffff',
-      surfaceElevated: '#ffffff',
-      surfaceSunken:   '#eeeceb',
-      border:          '#d6d3d1',
-      textPrimary:     '#1c1917',
-      textDefault:     'rgba(28,25,23,0.80)',
-      textSubtle:      'rgba(28,25,23,0.50)',
+      // Surfaces
+      bg:               tw.stone[50],
+      surface:          tw.white,
+      surfaceNegative:  tw.stone[100],
+      surfaceElevated:  tw.white,
+      border:           tw.stone[300],
+      borderSubtle:     tw.stone[200],
+      overlay:          'rgba(0, 0, 0, 0.45)',
+      // Text
+      textPrimary:      tw.stone[900],
+      textSecondary:    tw.stone[600],
+      textTertiary:     tw.stone[400],
+      textOnAccentPrimary:   tw.white,
+      textOnAccentSecondary: tw.stone[900],
+      textInverted:     tw.white,
+      // Brand accents — indigo
+      accentPrimary:        tw.indigo[600],
+      accentPrimarySubtle:  tw.indigo[50],
+      accentPrimaryText:    tw.indigo[700],
+      accentSecondary:      tw.stone[300],
+      accentSecondarySubtle: tw.stone[100],
+      accentSecondaryText:  tw.stone[700],
+      // Warning
+      warningText:      tw.amber[700],
+      warningAccent:    tw.amber[400],
+      warningSurface:   tw.amber[50],
+      // Success
+      successText:      tw.green[700],
+      successAccent:    tw.green[500],
+      successSurface:   tw.green[50],
+      // Info
+      infoText:         tw.blue[700],
+      infoAccent:       tw.blue[500],
+      infoSurface:      tw.blue[50],
+      // Destructive
+      destructiveText:    tw.red[700],
+      destructiveAccent:  tw.red[500],
+      destructiveSurface: tw.red[50],
+      // User colors
+      user1Text: tw.blue[700],   user1Accent: tw.blue[500],   user1Surface: tw.blue[50],
+      user2Text: tw.violet[700], user2Accent: tw.violet[500], user2Surface: tw.violet[50],
+      user3Text: tw.rose[700],   user3Accent: tw.rose[500],   user3Surface: tw.rose[50],
+      user4Text: tw.amber[700],  user4Accent: tw.amber[500],  user4Surface: tw.amber[50],
+      user5Text: tw.green[700],  user5Accent: tw.green[500],  user5Surface: tw.green[50],
+      user6Text: tw.cyan[700],   user6Accent: tw.cyan[500],   user6Surface: tw.cyan[50],
     },
     dark: {
-      primary:         '#6366f1',
-      onPrimary:       '#ffffff',
-      secondary:       '#a8a29e',
-      background:      '#292524',
-      surface:         '#1c1917',
-      surfaceElevated: '#292524',
-      surfaceSunken:   '#0c0a09',
-      border:          'rgba(255,255,255,0.12)',
-      textPrimary:     '#fafaf9',
-      textDefault:     'rgba(250,250,249,0.87)',
-      textSubtle:      'rgba(250,250,249,0.50)',
+      // Surfaces
+      bg:               tw.stone[800],
+      surface:          tw.stone[900],
+      surfaceNegative:  tw.stone[950],
+      surfaceElevated:  tw.stone[700],
+      border:           tw.stone[600],
+      borderSubtle:     tw.stone[700],
+      overlay:          'rgba(0, 0, 0, 0.65)',
+      // Text
+      textPrimary:      tw.stone[50],
+      textSecondary:    tw.stone[300],
+      textTertiary:     tw.stone[500],
+      textOnAccentPrimary:   tw.white,
+      textOnAccentSecondary: tw.stone[50],
+      textInverted:     tw.stone[900],
+      // Brand accents — indigo
+      accentPrimary:        tw.indigo[500],
+      accentPrimarySubtle:  tw.indigo[950],
+      accentPrimaryText:    tw.indigo[400],
+      accentSecondary:      tw.stone[500],
+      accentSecondarySubtle: tw.stone[800],
+      accentSecondaryText:  tw.stone[300],
+      // Warning
+      warningText:      tw.amber[400],
+      warningAccent:    tw.amber[500],
+      warningSurface:   tw.amber[950],
+      // Success
+      successText:      tw.green[400],
+      successAccent:    tw.green[500],
+      successSurface:   tw.green[950],
+      // Info
+      infoText:         tw.blue[400],
+      infoAccent:       tw.blue[500],
+      infoSurface:      tw.blue[950],
+      // Destructive
+      destructiveText:    tw.red[400],
+      destructiveAccent:  tw.red[500],
+      destructiveSurface: tw.red[950],
+      // User colors
+      user1Text: tw.blue[400],   user1Accent: tw.blue[500],   user1Surface: tw.blue[950],
+      user2Text: tw.violet[400], user2Accent: tw.violet[500], user2Surface: tw.violet[950],
+      user3Text: tw.rose[400],   user3Accent: tw.rose[500],   user3Surface: tw.rose[950],
+      user4Text: tw.amber[400],  user4Accent: tw.amber[500],  user4Surface: tw.amber[950],
+      user5Text: tw.green[400],  user5Accent: tw.green[500],  user5Surface: tw.green[950],
+      user6Text: tw.cyan[400],   user6Accent: tw.cyan[500],   user6Surface: tw.cyan[950],
     },
   },
   radius: {
@@ -48,5 +117,7 @@ export const edgy: Theme = {
   shadow: {
     sm: 'none',
     md: 'none',
+    lg: 'none',
+    xl: 'none',
   },
 };

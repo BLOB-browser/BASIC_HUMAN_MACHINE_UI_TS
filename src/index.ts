@@ -1,18 +1,18 @@
 /**
  * BASIC HUMAN MACHINE UI
  *
- * White-label component library for the BLOB ecosystem.
  * Three layers:
- *   1. themes/  — CSS var definitions (colors, fonts, radius, shadow) per theme
- *   2. tokens/  — applyTheme() runtime that writes CSS vars to the DOM
- *   3. components/ — .bhmui-* CSS classes + TypeScript component classes
+ *   1. themes/  — 6 theme definitions (colors, fonts, radius, shadow)
+ *   2. tokens/  — applyTheme() runtime: writes CSS vars to the DOM
+ *   3. react/   — React + Radix components (import from '@building-local-open-bots/ui/react')
+ *
+ * CSS (import '@building-local-open-bots/ui/styles') and the Tailwind preset
+ * (import from '@building-local-open-bots/ui/tailwind-preset') are separate
+ * entry points, not included here.
  */
 
-// Theme definitions + Tailwind preset helper
+// Theme definitions
 export * from './themes';
 
 // Runtime: applyTheme, detectMode
 export * from './tokens';
-
-// UI Components
-export * from './components';

@@ -5,11 +5,11 @@
 
 .blob-tooltip__content {
   position:        absolute;
-  background:      var(--color-text-primary, rgba(0,0,0,0.9));
-  color:           white;
+  background:      var(--color-text-primary);
+  color:           var(--color-text-inverted);
   border-radius:   var(--radius-s, 4px);
   padding:         0.3rem 0.625rem;
-  font-family:     var(--font-human, sans-serif);
+  font-family:     var(--font-display, sans-serif);
   font-size:       0.75rem;
   font-weight:     400;
   line-height:     1.4;
@@ -54,10 +54,24 @@
   transform: translateY(-50%);
 }
 
-/* Dark-mode: lighter background */
-@media (prefers-color-scheme: dark) {
-  .blob-tooltip__content {
-    background: rgba(255,255,255,0.92);
-    color:      rgba(0,0,0,0.9);
-  }
+/* Dark-mode: lighter background — handled by applyTheme() via --color-text-primary */
+
+/* ---- Radix Tooltip (portal-rendered) ---------------------------------- */
+.blob-tooltip {
+  background:    var(--color-text-primary);
+  color:         var(--color-text-inverted);
+  border-radius: var(--radius-s, 4px);
+  padding:       0.3rem 0.625rem;
+  font-family:   var(--font-display, sans-serif);
+  font-size:     0.75rem;
+  font-weight:   400;
+  line-height:   1.4;
+  white-space:   nowrap;
+  max-width:     240px;
+  z-index:       9999;
+  user-select:   none;
+  animation:     blob-tooltip-in 0.1s ease;
+}
+.blob-tooltip__arrow {
+  fill: var(--color-text-primary);
 }

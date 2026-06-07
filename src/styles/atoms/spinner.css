@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color:       var(--color-primary, #000);
+  color:       var(--color-accent-primary, #000);
 }
 .blob-spinner__ring {
   display:      block;

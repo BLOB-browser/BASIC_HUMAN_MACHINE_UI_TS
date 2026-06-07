@@ -1,0 +1,32 @@
+[21:23:56.802] [INFO] storybook v10.4.2
+[21:23:57.256] [DEBUG] Getting package.json info for /Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/package.json...
+[21:23:58.094] [INFO] Starting...
+[21:23:58.378] [DEBUG] Starting preview..
+[21:23:58.406] [DEBUG] Using tsconfig paths for react-docgen
+[21:23:58.413] [WARN] 🚨 Unable to index ./src/react/Colors.stories.tsx:
+  SyntaxError: Identifier 'ColorSection' has already been declared. (293:9)
+    at constructor (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:12171:21)
+    at Parser.raise (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:16356:71)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:13137:75)
+    at TypeScriptScopeHandler.declareName (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:13125:16)
+    at TypeScriptScopeHandler.declareName (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:15179:15)
+    at Parser.registerFunctionStatementId (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:20531:31)
+    at Parser.registerFunctionStatementId (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:17978:77)
+    at Parser.parseFunction (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:20522:100)
+    at Parser.parseFunctionStatement (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:20384:34)
+    at Parser.parseStatementContent (file:///Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS/node_modules/storybook/dist/_node-chunks/chunk-6YHOQD7F.js:20215:205)
+[21:23:58.418] [ERROR] Failed to build the preview
+[21:23:58.422] [ERROR] Error: Unable to index ./src/react/Colors.stories.tsx
+    at _StoryIndexGenerator.getIndexAndStats (file://./node_modules/storybook/dist/core-server/index.js:16835:15)
+    at async _StoryIndexGenerator.getIndex (file://./node_modules/storybook/dist/core-server/index.js:16824:13)
+    at async BasicMinimalPluginContext.config (file://./node_modules/@storybook/builder-vite/dist/_node-chunks/chunk-WHZKMS3Q.js:184:19)
+    at async runConfigHook (file://./node_modules/vite/dist/node/chunks/node.js:35033:15)
+    at async resolveConfig (file://./node_modules/vite/dist/node/chunks/node.js:34490:11)
+    at async _createServer (file://./node_modules/vite/dist/node/chunks/node.js:26197:65)
+    at async Module.start (file://./node_modules/@storybook/builder-vite/dist/index.js:1606:17)
+    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:18917:158)
+    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:8205:12)
+    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:19478:41)
+[21:23:58.423] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[21:24:01.412] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":false}

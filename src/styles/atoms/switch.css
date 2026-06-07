@@ -15,7 +15,7 @@
   border-left:      none;
   border-right:     1px solid var(--color-border, #e5e5e5);
   background-color: transparent;
-  color:            var(--color-text-default, rgba(0, 0, 0, 0.8));
+  color:            var(--color-text-secondary, rgba(0, 0, 0, 0.8));
   transition:       background-color 0.15s ease, color 0.15s ease;
   /* Reset hover opacity change from base .blob-button */
   opacity:          1;
@@ -35,8 +35,8 @@
 
 /* Active segment -------------------------------------------------------- */
 .blob-switch > .blob-button[aria-pressed="true"] {
-  background-color: var(--color-primary, #000) !important;
-  color:            var(--color-on-primary, #fff) !important;
+  background-color: var(--color-accent-primary, #000) !important;
+  color:            var(--color-text-on-accent-primary) !important;
   opacity:          1 !important;
 }
 
@@ -50,7 +50,7 @@
 
 /* Focus ring scoped to switch ------------------------------------------- */
 .blob-switch > .blob-button:focus-visible {
-  outline:        2px solid var(--color-primary, #000);
+  outline:        2px solid var(--color-accent-primary, #000);
   outline-offset: -2px;
   z-index:        1;
   position:       relative;

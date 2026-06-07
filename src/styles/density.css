@@ -1,0 +1,223 @@
+/**
+ * BHMUI Density Scale
+ *
+ * Defines spacing, text, and icon sizes as CSS custom properties.
+ * Three density modes compose with four device breakpoints.
+ *
+ * ── How to use ────────────────────────────────────────────────────────────
+ *
+ *   JS:  applyDensity('comfortable')  or  applyDensity('compact')
+ *   CSS: [data-density="comfortable"] { ... } (set automatically)
+ *
+ *   Tailwind utilities (in blobPreset):
+ *     Spacing  → p-sp-4   m-sp-2   gap-sp-3   w-sp-8   h-sp-8
+ *     Text     → text-ui-base   text-ui-sm   text-ui-lg
+ *     Icons    → w-icon-sm h-icon-sm   (square icon container)
+ *
+ * ── Density axis ──────────────────────────────────────────────────────────
+ *
+ *   compact     — 3px base grid, 13px text base, 16px icon base
+ *   default     — 4px base grid, 14px text base, 20px icon base
+ *   comfortable — 5px base grid, 16px text base, 24px icon base
+ *
+ * ── Device axis ───────────────────────────────────────────────────────────
+ *
+ *   mobile  (≤640px)   — shifts default → compact values
+ *   tablet  (641–1024) — same as desktop
+ *   desktop (≥1025px)  — base values (density applies on top)
+ *   wide    (≥1280px)  — comfortable on wide adds one extra step
+ */
+
+/* ── Default density (data-density unset or "default") ───────────────────── */
+:root {
+  /* Spacing — 4px base grid */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Text scale */
+  --text-ui-xs:   11px;
+  --text-ui-sm:   13px;
+  --text-ui-base: 14px;
+  --text-ui-lg:   16px;
+  --text-ui-xl:   18px;
+  --text-ui-2xl:  22px;
+
+  /* Line heights — fixed, not density-responsive */
+  --leading-ui-tight:   1.25;
+  --leading-ui-normal:  1.5;
+  --leading-ui-relaxed: 1.75;
+
+  /* Icon sizes */
+  --icon-xs:   12px;
+  --icon-sm:   16px;
+  --icon-base: 20px;
+  --icon-lg:   24px;
+  --icon-xl:   32px;
+}
+
+/* ── Compact ─────────────────────────────────────────────────────────────── */
+:root[data-density="compact"] {
+  --space-1:  3px;
+  --space-2:  6px;
+  --space-3:  9px;
+  --space-4:  12px;
+  --space-5:  15px;
+  --space-6:  18px;
+  --space-8:  24px;
+  --space-10: 30px;
+  --space-12: 36px;
+  --space-16: 48px;
+
+  --text-ui-xs:   10px;
+  --text-ui-sm:   11px;
+  --text-ui-base: 13px;
+  --text-ui-lg:   15px;
+  --text-ui-xl:   17px;
+  --text-ui-2xl:  20px;
+
+  --icon-xs:   10px;
+  --icon-sm:   14px;
+  --icon-base: 16px;
+  --icon-lg:   20px;
+  --icon-xl:   28px;
+}
+
+/* ── Comfortable ─────────────────────────────────────────────────────────── */
+:root[data-density="comfortable"] {
+  --space-1:  5px;
+  --space-2:  10px;
+  --space-3:  15px;
+  --space-4:  20px;
+  --space-5:  25px;
+  --space-6:  30px;
+  --space-8:  40px;
+  --space-10: 50px;
+  --space-12: 60px;
+  --space-16: 80px;
+
+  --text-ui-xs:   12px;
+  --text-ui-sm:   14px;
+  --text-ui-base: 16px;
+  --text-ui-lg:   18px;
+  --text-ui-xl:   20px;
+  --text-ui-2xl:  26px;
+
+  --icon-xs:   14px;
+  --icon-sm:   18px;
+  --icon-base: 24px;
+  --icon-lg:   28px;
+  --icon-xl:   36px;
+}
+
+/* ── Device: mobile (≤640px) ─────────────────────────────────────────────── */
+/*
+ * On mobile, "default" shifts to compact values,
+ * "comfortable" shifts to default values,
+ * "compact" gets slightly tighter.
+ */
+@media (max-width: 640px) {
+  :root {
+    --space-1:  3px;
+    --space-2:  6px;
+    --space-3:  10px;
+    --space-4:  14px;
+    --space-5:  18px;
+    --space-6:  22px;
+    --space-8:  28px;
+    --space-10: 36px;
+    --space-12: 44px;
+    --space-16: 56px;
+
+    --text-ui-xs:   11px;
+    --text-ui-sm:   12px;
+    --text-ui-base: 14px;
+    --text-ui-lg:   15px;
+    --text-ui-xl:   17px;
+    --text-ui-2xl:  20px;
+
+    --icon-base: 18px;
+    --icon-lg:   22px;
+    --icon-xl:   28px;
+  }
+
+  :root[data-density="compact"] {
+    --space-1:  2px;
+    --space-2:  5px;
+    --space-3:  8px;
+    --space-4:  11px;
+    --space-5:  13px;
+    --space-6:  16px;
+    --space-8:  22px;
+    --space-10: 28px;
+    --space-12: 32px;
+    --space-16: 44px;
+
+    --text-ui-base: 12px;
+    --text-ui-lg:   14px;
+
+    --icon-base: 14px;
+    --icon-lg:   18px;
+  }
+
+  :root[data-density="comfortable"] {
+    /* comfortable on mobile → default desktop values */
+    --space-1:  4px;
+    --space-2:  8px;
+    --space-3:  12px;
+    --space-4:  16px;
+    --space-5:  20px;
+    --space-6:  24px;
+    --space-8:  32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    --text-ui-xs:   11px;
+    --text-ui-sm:   13px;
+    --text-ui-base: 15px;
+    --text-ui-lg:   17px;
+    --text-ui-xl:   19px;
+    --text-ui-2xl:  23px;
+
+    --icon-base: 20px;
+    --icon-lg:   24px;
+    --icon-xl:   32px;
+  }
+}
+
+/* ── Device: large desktop (≥1280px) ─────────────────────────────────────── */
+/*
+ * On wide screens, comfortable mode gets an extra step up.
+ * Default and compact are unchanged.
+ */
+@media (min-width: 1280px) {
+  :root[data-density="comfortable"] {
+    --space-1:  6px;
+    --space-2:  12px;
+    --space-3:  18px;
+    --space-4:  24px;
+    --space-5:  30px;
+    --space-6:  36px;
+    --space-8:  48px;
+    --space-10: 60px;
+    --space-12: 72px;
+    --space-16: 96px;
+
+    --text-ui-base: 17px;
+    --text-ui-lg:   19px;
+    --text-ui-xl:   22px;
+    --text-ui-2xl:  28px;
+
+    --icon-base: 26px;
+    --icon-lg:   32px;
+    --icon-xl:   40px;
+  }
+}
