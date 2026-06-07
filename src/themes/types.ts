@@ -34,6 +34,8 @@ export interface ThemeColorSet {
   surface: string;
   /** Elevated surface (dropdowns, modals) */
   surfaceElevated: string;
+  /** Sunken / pressed surface (hover states, selected rows, inset areas) */
+  surfaceSunken: string;
   /** Default border color */
   border: string;
   /** Primary text */

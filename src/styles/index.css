@@ -1,5 +1,5 @@
-/* @blob/ui — single stylesheet import
- * Usage: import '@blob/ui/styles' once at app boot.
+/* @building-local-open-bots/ui — single stylesheet import
+ * Usage: import '@building-local-open-bots/ui/styles' once at app boot.
  * This loads all component styles in dependency order.
  */
 

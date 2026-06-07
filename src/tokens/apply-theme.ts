@@ -65,6 +65,7 @@ export function applyTheme(
   target.style.setProperty('--color-background',       colors.background);
   target.style.setProperty('--color-surface',          colors.surface);
   target.style.setProperty('--color-surface-elevated', colors.surfaceElevated);
+  target.style.setProperty('--color-surface-sunken',   colors.surfaceSunken);
   target.style.setProperty('--color-border',           colors.border);
   target.style.setProperty('--color-text-primary',     colors.textPrimary);
   target.style.setProperty('--color-text-default',     colors.textDefault);

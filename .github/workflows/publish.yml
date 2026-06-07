@@ -1,4 +1,4 @@
-name: Publish @blob/ui to GitHub Packages
+name: Publish @building-local-open-bots/ui to GitHub Packages
 
 # Triggers on a tag push matching v* (e.g. v0.2.0, v1.0.0-beta.1).
 # Before tagging, make sure package.json version has been bumped to match.
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@blob'
+          scope: '@building-local-open-bots'
 
       - name: Install dependencies
         run: npm ci

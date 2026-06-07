@@ -1,6 +1,6 @@
 {
-  "name": "@blob/ui",
-  "version": "0.2.0",
+  "name": "@building-local-open-bots/ui",
+  "version": "0.3.0",
   "description": "BASIC HUMAN MACHINE UI — design tokens and components for the BLOB ecosystem",
   "type": "module",
   "repository": {
