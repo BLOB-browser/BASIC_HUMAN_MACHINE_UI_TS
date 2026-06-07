@@ -27,88 +27,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-empty-state';
-  style.textContent = `
-    .blob-empty-state {
-      display:         flex;
-      flex-direction:  column;
-      align-items:     center;
-      justify-content: center;
-      text-align:      center;
-      padding:         3.5rem 2rem;
-      font-family:     var(--font-human, sans-serif);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .blob-empty-state--compact {
-      padding: 1.75rem 1.25rem;
-    }
-
-    /* Icon / illustration */
-    .blob-empty-state__icon {
-      display:        flex;
-      align-items:    center;
-      justify-content: center;
-      width:          56px;
-      height:         56px;
-      border-radius:  var(--radius-l, 10px);
-      background:     var(--color-surface, rgba(0,0,0,0.04));
-      color:          var(--color-text-subtle, rgba(0,0,0,0.35));
-      margin-bottom:  1.25rem;
-      flex-shrink:    0;
-    }
-    .blob-empty-state--compact .blob-empty-state__icon {
-      width:  40px;
-      height: 40px;
-      margin-bottom: 0.875rem;
-    }
-    .blob-empty-state__icon svg,
-    .blob-empty-state__icon img { width: 28px; height: 28px; }
-    .blob-empty-state--compact .blob-empty-state__icon svg,
-    .blob-empty-state--compact .blob-empty-state__icon img { width: 20px; height: 20px; }
-
-    /* Text */
-    .blob-empty-state__title {
-      font-size:     1rem;
-      font-weight:   600;
-      color:         var(--color-text-primary, #000);
-      line-height:   1.3;
-      margin-bottom: 0.375rem;
-    }
-    .blob-empty-state--compact .blob-empty-state__title {
-      font-size: 0.9375rem;
-    }
-
-    .blob-empty-state__description {
-      font-size:   0.875rem;
-      color:       var(--color-text-subtle, rgba(0,0,0,0.5));
-      line-height: 1.6;
-      max-width:   360px;
-    }
-
-    /* Action(s) */
-    .blob-empty-state__actions {
-      display:     flex;
-      align-items: center;
-      gap:         0.625rem;
-      flex-wrap:   wrap;
-      justify-content: center;
-      margin-top:  1.25rem;
-    }
-    .blob-empty-state--compact .blob-empty-state__actions {
-      margin-top: 0.875rem;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -130,7 +48,6 @@ export class EmptyState {
   public element: HTMLElement;
 
   constructor(options: EmptyStateOptions) {
-    injectStyles();
     this.element = this.build(options);
   }
 

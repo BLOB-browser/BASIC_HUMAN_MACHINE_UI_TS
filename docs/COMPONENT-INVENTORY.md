@@ -1,6 +1,6 @@
 # BHMUI Component Inventory
 
-_Last updated: 2026-04-01_
+_Last updated: 2026-05-25_
 
 This document is the authoritative record of everything in BHMUI: themes, components, and their status.
 
@@ -16,6 +16,36 @@ This document is the authoritative record of everything in BHMUI: themes, compon
 
 ---
 
+## Architecture (v0.2.0+)
+
+**ADR-011 (May 2026)**: CSS is defined once in `src/styles/*.css`. Vanilla TS components are classname applicators only — no runtime style injection. React components are thin `cva + cn` wrappers in `src/react/`.
+
+### Consumer usage
+
+```typescript
+// At app boot — once, covers all component styles
+import '@blob/ui/styles';
+
+// Vanilla TS (DOM-building)
+import { Button } from '@blob/ui/components';
+
+// React (JSX)
+import { Button } from '@blob/ui/react';
+```
+
+### Package exports
+
+| Export | Content |
+|---|---|
+| `@blob/ui` | Re-exports everything (tokens, themes, components) |
+| `@blob/ui/tokens` | Design tokens + `applyTheme()` |
+| `@blob/ui/themes` | Theme definitions |
+| `@blob/ui/components` | Vanilla TS component classes |
+| `@blob/ui/styles` | Bundled CSS for all components (import once at app boot) |
+| `@blob/ui/react` | React wrappers (`Button`, `Input`, `Avatar`, `Badge`, `Spinner`, `Tag`, `Card`, `Tabs`) |
+
+---
+
 ## Design Token System
 
 Tokens are implemented as **CSS custom properties** injected at runtime by `applyTheme()` from `src/themes/index.ts`.
@@ -23,13 +53,17 @@ Tokens are implemented as **CSS custom properties** injected at runtime by `appl
 ### How It Works
 
 ```typescript
-import { applyTheme } from '@ui/themes';
+import { applyTheme, detectMode } from '@blob/ui/tokens';
 
-// Inject all CSS vars onto :root for the given theme + mode
-applyTheme('classic', 'dark');
+// Inject all CSS vars onto :root — always use 'system' (ADR-009)
+applyTheme('classic', detectMode());
+
+// Keep in sync when OS colour scheme changes
+window.matchMedia('(prefers-color-scheme: dark)')
+  .addEventListener('change', () => applyTheme('classic', detectMode()));
 ```
 
-All components reference tokens exclusively via CSS `var()` calls inside their `injectStyles()` function — no raw colour values anywhere in component code.
+All components reference tokens exclusively via CSS `var()` calls in `src/styles/*.css` — no raw colour values anywhere in component code.
 
 ### Theme Files (`src/themes/`)
 
@@ -177,6 +211,25 @@ Full standalone feature components — each can own the full viewport.
 | Molecules | 20 | ✅ All implemented |
 | Widgets | 5 | ✅ All implemented |
 | **Total** | **44 components** | **✅ Zero gaps** |
+
+---
+
+## React Wrappers (`@blob/ui/react`) 
+
+Available since v0.2.0 (ADR-011). These are thin `cva + cn` wrappers that apply the same CSS classes as the vanilla TS components — same visual output, React API.
+
+| Component | Import | Variants |
+|---|---|---|
+| `Button` | `@blob/ui/react` | `variant`: primary \| secondary \| ghost \| danger; `size`: sm \| md \| lg; `loading` |
+| `Input` | `@blob/ui/react` | `size`: sm \| md \| lg; `state`: default \| error \| success |
+| `Avatar` | `@blob/ui/react` | `size`: sm \| md \| lg \| xl; `shape`: circle \| square |
+| `Badge` | `@blob/ui/react` | `variant`: default \| primary \| success \| warning \| danger; `size`: sm \| md |
+| `Spinner` | `@blob/ui/react` | `size`: sm \| md \| lg |
+| `Tag` | `@blob/ui/react` | `variant`: default \| primary; `removable` |
+| `Card` | `@blob/ui/react` | `variant`: default \| elevated \| outlined |
+| `Tabs` | `@blob/ui/react` | `items`, `activeIndex`, `onChange` |
+
+All apps must add `import '@blob/ui/styles'` once at boot before any BHMUI component class is used.
 
 ---
 

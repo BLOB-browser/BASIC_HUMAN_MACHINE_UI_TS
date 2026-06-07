@@ -43,67 +43,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-bar-chart';
-  style.textContent = `
-    .blob-bar-chart {
-      display:     block;
-      width:       100%;
-      font-family: var(--font-machine, monospace);
-      -webkit-font-smoothing: antialiased;
-    }
-    .blob-bar-chart svg { display: block; width: 100%; overflow: visible; }
-
-    /* Grid */
-    .blob-bar-chart__grid  { stroke: var(--color-border, #e5e5e5); stroke-width: 1; }
-    /* Axes */
-    .blob-bar-chart__axis  { stroke: var(--color-border, #e5e5e5); stroke-width: 1; }
-    /* Tick labels */
-    .blob-bar-chart__tick  { fill: var(--color-text-subtle, rgba(0,0,0,0.45)); font-size: 11px; }
-    /* Axis labels */
-    .blob-bar-chart__label { fill: var(--color-text-default, rgba(0,0,0,0.7)); font-size: 12px; font-weight: 500; }
-    /* Bars */
-    .blob-bar-chart__bar   { rx: 3; transition: opacity 0.1s ease; }
-    .blob-bar-chart__bar:hover { opacity: 0.8; }
-    /* Value labels on bars */
-    .blob-bar-chart__val   {
-      fill:       var(--color-text-subtle, rgba(0,0,0,0.45));
-      font-size:  10px;
-      text-anchor: middle;
-    }
-
-    /* Legend */
-    .blob-bar-chart__legend {
-      display:         flex;
-      flex-wrap:       wrap;
-      gap:             0.375rem 0.875rem;
-      justify-content: center;
-      font-size:       0.8rem;
-      margin-top:      0.5rem;
-      font-family:     var(--font-human, sans-serif);
-    }
-    .blob-bar-chart__legend-item {
-      display:     flex;
-      align-items: center;
-      gap:         0.375rem;
-      color:       var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-bar-chart__legend-dot {
-      width:         10px;
-      height:        10px;
-      border-radius: var(--radius-s, 3px);
-      flex-shrink:   0;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Palette
 // ---------------------------------------------------------------------------
@@ -175,7 +114,6 @@ export class BarChart {
   private _opts:  BarChartOptions;
 
   constructor(options: BarChartOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

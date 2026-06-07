@@ -22,116 +22,6 @@
  */
 
 // ---------------------------------------------------------------------------
-// Style injection
-// ---------------------------------------------------------------------------
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-input';
-
-  style.textContent = `
-    /* Wrapper --------------------------------------------------------------- */
-    .blob-input-wrapper {
-      display:        flex;
-      flex-direction: column;
-      gap:            0.25rem;
-      width:          100%;
-    }
-
-    /* Label ----------------------------------------------------------------- */
-    .blob-input-label {
-      font-family: var(--font-human, sans-serif);
-      font-size:   0.8125rem;
-      font-weight: 500;
-      color:       var(--color-text-primary, #000);
-      line-height: 1.4;
-    }
-    .blob-input--error  .blob-input-label  { color: #dc2626; }
-
-    /* Field row (icon + input + action) ------------------------------------- */
-    .blob-input-row {
-      position:         relative;
-      display:          flex;
-      align-items:      center;
-      background-color: var(--color-surface, #fff);
-      border:           1px solid var(--color-border, #e5e5e5);
-      border-radius:    var(--radius-m, 6px);
-      transition:       border-color 0.15s ease, box-shadow 0.15s ease;
-      overflow:         hidden;
-    }
-    .blob-input-row:focus-within {
-      border-color: var(--color-primary, #000);
-      box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-primary, #000) 15%, transparent);
-    }
-    .blob-input--error  .blob-input-row {
-      border-color: #dc2626;
-    }
-    .blob-input--error  .blob-input-row:focus-within {
-      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
-    }
-    .blob-input--disabled .blob-input-row {
-      background-color: var(--color-surface, #f5f5f5);
-      opacity:          0.5;
-      pointer-events:   none;
-    }
-
-    /* Icon slots ------------------------------------------------------------ */
-    .blob-input-icon {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-      color:       var(--color-text-subtle, rgba(0,0,0,0.5));
-      padding:     0 0.5rem;
-    }
-    .blob-input-icon svg,
-    .blob-input-icon img {
-      width:  1rem;
-      height: 1rem;
-    }
-
-    /* Action slot (right side) — e.g. a Button component ------------------- */
-    .blob-input-action {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-      padding:     0 0.25rem;
-    }
-
-    /* The <input> itself ---------------------------------------------------- */
-    .blob-input-field {
-      flex:             1;
-      background:       transparent;
-      border:           none;
-      outline:          none;
-      font-family:      var(--font-human, sans-serif);
-      color:            var(--color-text-default, #000);
-      caret-color:      var(--color-primary, #000);
-      min-width:        0;
-    }
-    .blob-input-field::placeholder {
-      color: var(--color-text-subtle, rgba(0,0,0,0.4));
-    }
-
-    /* Helper / error text --------------------------------------------------- */
-    .blob-input-helper {
-      font-family: var(--font-human, sans-serif);
-      font-size:   0.75rem;
-      color:       var(--color-text-subtle, rgba(0,0,0,0.5));
-      line-height: 1.4;
-    }
-    .blob-input--error .blob-input-helper {
-      color: #dc2626;
-    }
-  `;
-
-  document.head.appendChild(style);
-}
-
-// ---------------------------------------------------------------------------
 // Size → Tailwind classes applied to the <input> field
 // ---------------------------------------------------------------------------
 const SIZE_CLASSES: Record<InputSize, string> = {
@@ -180,7 +70,6 @@ export class Input {
     Pick<InputOptions, 'iconLeft' | 'iconRight' | 'action' | 'className' | 'onChange' | 'onEnter'>;
 
   constructor(options: InputOptions = {}) {
-    injectStyles();
 
     this.options = {
       label:       options.label       ?? '',

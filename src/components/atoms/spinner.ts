@@ -22,41 +22,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-spinner';
-  style.textContent = `
-    .blob-spinner {
-      display:     inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color:       var(--color-primary, #000);
-    }
-    .blob-spinner__ring {
-      display:      block;
-      border-style: solid;
-      border-color: currentColor;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation:    blob-spinner-spin 0.65s linear infinite;
-    }
-    .blob-spinner--xs .blob-spinner__ring { width: 12px; height: 12px; border-width: 1.5px; }
-    .blob-spinner--sm .blob-spinner__ring { width: 16px; height: 16px; border-width: 2px;   }
-    .blob-spinner--md .blob-spinner__ring { width: 24px; height: 24px; border-width: 2.5px; }
-    .blob-spinner--lg .blob-spinner__ring { width: 40px; height: 40px; border-width: 3px;   }
-    @keyframes blob-spinner-spin {
-      to { transform: rotate(360deg); }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -77,7 +42,6 @@ export class Spinner {
   private _opts: SpinnerOptions;
 
   constructor(options: SpinnerOptions = {}) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

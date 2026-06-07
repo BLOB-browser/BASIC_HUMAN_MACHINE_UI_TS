@@ -36,113 +36,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-list-item';
-  style.textContent = `
-    .blob-list-item {
-      display:         flex;
-      align-items:     center;
-      gap:             0.75rem;
-      padding:         0.625rem 0.75rem;
-      border-radius:   var(--radius-m, 6px);
-      font-family:     var(--font-human, sans-serif);
-      cursor:          default;
-      user-select:     none;
-      text-decoration: none;
-      color:           var(--color-text-default, rgba(0,0,0,0.8));
-      transition:      background 0.1s ease;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Clickable */
-    .blob-list-item--clickable {
-      cursor: pointer;
-    }
-    .blob-list-item--clickable:hover {
-      background: var(--color-surface, rgba(0,0,0,0.04));
-    }
-    .blob-list-item--clickable:active {
-      background: var(--color-surface-elevated, rgba(0,0,0,0.08));
-    }
-    .blob-list-item--clickable:focus-visible {
-      outline:        2px solid var(--color-primary, #000);
-      outline-offset: -2px;
-    }
-
-    /* Active / selected */
-    .blob-list-item--active {
-      background: color-mix(in srgb, var(--color-primary, #000) 8%, transparent);
-      color:      var(--color-primary, #000);
-      font-weight: 500;
-    }
-    .blob-list-item--active:hover {
-      background: color-mix(in srgb, var(--color-primary, #000) 12%, transparent);
-    }
-
-    /* Disabled */
-    .blob-list-item--disabled {
-      opacity:        0.4;
-      cursor:         not-allowed;
-      pointer-events: none;
-    }
-
-    /* Danger */
-    .blob-list-item--danger       { color: #dc2626; }
-    .blob-list-item--danger:hover { background: rgba(220,38,38,0.06); }
-
-    /* Leading slot */
-    .blob-list-item__leading {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-      color:       var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-    .blob-list-item--active  .blob-list-item__leading { color: var(--color-primary, #000); }
-    .blob-list-item--danger  .blob-list-item__leading { color: inherit; }
-
-    /* Body */
-    .blob-list-item__body {
-      flex:           1;
-      min-width:      0; /* allow text truncation */
-      display:        flex;
-      flex-direction: column;
-      gap:            0.125rem;
-    }
-
-    .blob-list-item__label {
-      font-size:     0.875rem;
-      font-weight:   inherit;
-      white-space:   nowrap;
-      overflow:      hidden;
-      text-overflow: ellipsis;
-    }
-
-    .blob-list-item__description {
-      font-size:     0.75rem;
-      color:         var(--color-text-subtle, rgba(0,0,0,0.45));
-      white-space:   nowrap;
-      overflow:      hidden;
-      text-overflow: ellipsis;
-    }
-    .blob-list-item--danger .blob-list-item__description { color: rgba(220,38,38,0.7); }
-
-    /* Trailing slot */
-    .blob-list-item__trailing {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-      color:       var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -172,7 +65,6 @@ export class ListItem {
   private _opts:  ListItemOptions;
 
   constructor(options: ListItemOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

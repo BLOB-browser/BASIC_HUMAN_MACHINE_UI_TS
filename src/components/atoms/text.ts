@@ -23,73 +23,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-text';
-  style.textContent = `
-    /* Base */
-    .blob-text {
-      margin:  0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Font families by variant */
-    .blob-text--h1,
-    .blob-text--h2,
-    .blob-text--h3,
-    .blob-text--h4,
-    .blob-text--h5     { font-family: var(--font-display, sans-serif); }
-
-    .blob-text--body,
-    .blob-text--body-sm,
-    .blob-text--caption,
-    .blob-text--overline { font-family: var(--font-human, sans-serif); }
-
-    .blob-text--code   { font-family: var(--font-machine, monospace); }
-
-    /* Default colours */
-    .blob-text--h1,
-    .blob-text--h2,
-    .blob-text--h3,
-    .blob-text--h4,
-    .blob-text--h5     { color: var(--color-text-primary, #000); }
-
-    .blob-text--body,
-    .blob-text--body-sm { color: var(--color-text-default, rgba(0,0,0,0.8)); }
-
-    .blob-text--caption,
-    .blob-text--overline { color: var(--color-text-subtle, rgba(0,0,0,0.45)); }
-
-    .blob-text--code {
-      color:         var(--color-text-default, rgba(0,0,0,0.8));
-      background:    var(--color-surface-elevated, #f0f0f0);
-      padding:       0.15em 0.4em;
-      border-radius: var(--radius-s, 3px);
-    }
-
-    /* Overline extra */
-    .blob-text--overline {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Explicit colour overrides */
-    .blob-text--color-default { color: var(--color-text-default, rgba(0,0,0,0.8)); }
-    .blob-text--color-subtle  { color: var(--color-text-subtle,  rgba(0,0,0,0.45)); }
-    .blob-text--color-primary { color: var(--color-primary, #000); }
-    .blob-text--color-success { color: #16a34a; }
-    .blob-text--color-warning { color: #d97706; }
-    .blob-text--color-danger  { color: #dc2626; }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Size → Tailwind class mapping
 // ---------------------------------------------------------------------------
@@ -149,7 +82,6 @@ export class Text {
   private _opts:  TextOptions;
 
   constructor(options: TextOptions = {}) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

@@ -1,0 +1,38 @@
+.blob-sparkline {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+/* SVG element */
+.blob-sparkline__svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Shared color via custom property */
+.blob-sparkline { --blob-sparkline-color: var(--color-primary, #000); }
+
+/* Line */
+.blob-sparkline__line {
+  fill:             none;
+  stroke:           var(--blob-sparkline-color);
+  stroke-width:     2px;
+  stroke-linecap:   round;
+  stroke-linejoin:  round;
+}
+
+/* Area */
+.blob-sparkline__area {
+  fill:    var(--blob-sparkline-color);
+  opacity: 0.12;
+}
+
+/* Bar sparks */
+.blob-sparkline__bar {
+  fill:    var(--blob-sparkline-color);
+  opacity: 0.6;
+  rx:      1;
+}
+.blob-sparkline__bar--last {
+  opacity: 1;
+}

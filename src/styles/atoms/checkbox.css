@@ -1,0 +1,108 @@
+/* Outer label ---------------------------------------------------------- */
+.blob-checkbox {
+  display:     inline-flex;
+  align-items: flex-start;
+  gap:         0.5rem;
+  cursor:      pointer;
+  user-select: none;
+  font-family: var(--font-human, sans-serif);
+  font-size:   0.875rem;
+  color:       var(--color-text-default, rgba(0,0,0,0.8));
+  line-height: 1.4;
+}
+.blob-checkbox--disabled { opacity: 0.4; cursor: not-allowed; }
+.blob-checkbox--disabled .blob-checkbox__input { cursor: not-allowed; }
+
+/* Control wrapper (box + hidden native input) -------------------------- */
+.blob-checkbox__control {
+  position: relative;
+  display:  inline-flex;
+  flex-shrink: 0;
+  margin-top: 0.1em; /* optically align with first line of text */
+}
+
+/* Native input — invisible but still interactive ---------------------- */
+.blob-checkbox__input {
+  position: absolute;
+  width:    100%;
+  height:   100%;
+  opacity:  0;
+  margin:   0;
+  cursor:   pointer;
+  z-index:  1;
+}
+
+/* Custom box ----------------------------------------------------------- */
+.blob-checkbox__box {
+  width:         18px;
+  height:        18px;
+  border:        2px solid var(--color-border, #d1d5db);
+  border-radius: var(--radius-s, 3px);
+  background:    transparent;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  transition:    background 0.15s, border-color 0.15s;
+  flex-shrink:   0;
+}
+
+/* Checked */
+.blob-checkbox__input:checked ~ .blob-checkbox__box {
+  background:   var(--color-primary, #000);
+  border-color: var(--color-primary, #000);
+}
+/* Indeterminate */
+.blob-checkbox__input:indeterminate ~ .blob-checkbox__box {
+  background:   var(--color-primary, #000);
+  border-color: var(--color-primary, #000);
+}
+
+/* Check icon (hidden by default, visible when checked) */
+.blob-checkbox__check {
+  display:  none;
+  width:    10px;
+  height:   10px;
+  color:    var(--color-on-primary, #fff);
+  flex-shrink: 0;
+}
+.blob-checkbox__input:checked ~ .blob-checkbox__box .blob-checkbox__check {
+  display: block;
+}
+
+/* Dash icon (indeterminate) */
+.blob-checkbox__dash {
+  display:       none;
+  width:         10px;
+  height:        2px;
+  background:    var(--color-on-primary, #fff);
+  border-radius: 1px;
+  flex-shrink:   0;
+}
+.blob-checkbox__input:indeterminate ~ .blob-checkbox__box .blob-checkbox__check {
+  display: none !important;
+}
+.blob-checkbox__input:indeterminate ~ .blob-checkbox__box .blob-checkbox__dash {
+  display: block;
+}
+
+/* Focus ring on the visual box */
+.blob-checkbox__input:focus-visible ~ .blob-checkbox__box {
+  outline:        2px solid var(--color-primary, #000);
+  outline-offset: 2px;
+}
+
+/* Error state */
+.blob-checkbox--error .blob-checkbox__box {
+  border-color: #dc2626;
+}
+
+/* Helper / error text */
+.blob-checkbox__helper {
+  display:     block;
+  margin-top:  0.25rem;
+  font-size:   0.75rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.45));
+}
+.blob-checkbox--error .blob-checkbox__helper {
+  color: #dc2626;
+}

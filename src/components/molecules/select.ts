@@ -34,108 +34,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-select';
-  style.textContent = `
-    .blob-select-wrap {
-      display:        flex;
-      flex-direction: column;
-      gap:            0.3rem;
-      font-family:    var(--font-human, sans-serif);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Label */
-    .blob-select-wrap__label {
-      font-size:   0.8125rem;
-      font-weight: 500;
-      color:       var(--color-text-default, rgba(0,0,0,0.8));
-      line-height: 1.3;
-    }
-    .blob-select-wrap__label--required::after {
-      content: ' *';
-      color:   #dc2626;
-    }
-
-    /* Input row (select + chevron) */
-    .blob-select-wrap__control {
-      position:         relative;
-      display:          flex;
-      align-items:      center;
-    }
-
-    /* The <select> element */
-    .blob-select {
-      width:            100%;
-      appearance:       none;
-      -webkit-appearance: none;
-      padding:          0.5rem 2.25rem 0.5rem 0.75rem;
-      background:       var(--color-background, #fff);
-      border:           1px solid var(--color-border, #d1d5db);
-      border-radius:    var(--radius-m, 6px);
-      font-family:      var(--font-human, sans-serif);
-      font-size:        0.875rem;
-      color:            var(--color-text-default, rgba(0,0,0,0.8));
-      line-height:      1.5;
-      cursor:           pointer;
-      transition:       border-color 0.1s ease, box-shadow 0.1s ease;
-      outline:          none;
-    }
-    .blob-select:focus {
-      border-color: var(--color-primary, #000);
-      box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-primary, #000) 15%, transparent);
-    }
-    .blob-select:disabled {
-      opacity:          0.45;
-      cursor:           not-allowed;
-      background:       var(--color-surface, rgba(0,0,0,0.03));
-    }
-    .blob-select--error {
-      border-color: #dc2626;
-    }
-    .blob-select--error:focus {
-      border-color: #dc2626;
-      box-shadow:   0 0 0 3px rgba(220,38,38,0.15);
-    }
-    /* Placeholder option */
-    .blob-select option[value=""] {
-      color: var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-
-    /* Chevron */
-    .blob-select-wrap__chevron {
-      position:       absolute;
-      right:          0.625rem;
-      display:        flex;
-      align-items:    center;
-      pointer-events: none;
-      color:          var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-    .blob-select-wrap__chevron svg { width: 14px; height: 14px; }
-
-    /* Sizes */
-    .blob-select--sm { padding: 0.3125rem 2rem 0.3125rem 0.625rem; font-size: 0.8125rem; }
-    .blob-select--lg { padding: 0.6875rem 2.5rem 0.6875rem 0.875rem; font-size: 0.9375rem; }
-
-    /* Helper / error text */
-    .blob-select-wrap__helper {
-      font-size: 0.75rem;
-      color:     var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-    .blob-select-wrap__error {
-      font-size: 0.75rem;
-      color:     #dc2626;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -179,7 +77,6 @@ export class Select {
   private _error:   string | null = null;
 
   constructor(options: SelectOptions) {
-    injectStyles();
     this._opts   = options;
     this._error  = options.error ?? null;
     this.element = this.build();

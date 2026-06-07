@@ -36,89 +36,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-donut-chart';
-  style.textContent = `
-    .blob-donut-chart {
-      display:        flex;
-      flex-direction: column;
-      align-items:    center;
-      gap:            1rem;
-      font-family:    var(--font-human, sans-serif);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .blob-donut-chart__svg-wrap {
-      position: relative;
-      width:    100%;
-      max-width: 220px;
-    }
-    .blob-donut-chart__svg-wrap svg {
-      display: block;
-      width:   100%;
-    }
-
-    /* Center label overlay */
-    .blob-donut-chart__center {
-      position:  absolute;
-      inset:     0;
-      display:   flex;
-      flex-direction: column;
-      align-items:    center;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .blob-donut-chart__center-label {
-      font-size:   1.125rem;
-      font-weight: 700;
-      color:       var(--color-text-primary, #000);
-      line-height: 1.2;
-    }
-    .blob-donut-chart__center-sub {
-      font-size:  0.75rem;
-      color:      var(--color-text-subtle, rgba(0,0,0,0.45));
-      margin-top: 0.1rem;
-    }
-
-    /* Legend */
-    .blob-donut-chart__legend {
-      display:        flex;
-      flex-wrap:      wrap;
-      gap:            0.375rem 0.875rem;
-      justify-content: center;
-      font-size:      0.8125rem;
-    }
-    .blob-donut-chart__legend-item {
-      display:     flex;
-      align-items: center;
-      gap:         0.375rem;
-      color:       var(--color-text-default, rgba(0,0,0,0.8));
-      white-space: nowrap;
-    }
-    .blob-donut-chart__legend-dot {
-      width:         10px;
-      height:        10px;
-      border-radius: var(--radius-full, 9999px);
-      flex-shrink:   0;
-    }
-    .blob-donut-chart__legend-pct {
-      color:       var(--color-text-subtle, rgba(0,0,0,0.45));
-      font-size:   0.75rem;
-    }
-
-    /* Tooltip via title element — native browser tooltip */
-    .blob-donut-chart__segment { cursor: default; }
-    .blob-donut-chart__segment:hover { opacity: 0.85; }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Default palette — starts with primary (CSS var resolved at render time via
 // a fallback chain of readable colors).
@@ -198,7 +115,6 @@ export class DonutChart {
   private _opts:  DonutChartOptions;
 
   constructor(options: DonutChartOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

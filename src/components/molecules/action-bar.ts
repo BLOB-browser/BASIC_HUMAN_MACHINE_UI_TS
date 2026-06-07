@@ -46,82 +46,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-action-bar';
-  style.textContent = `
-    .blob-action-bar {
-      display:     flex;
-      align-items: center;
-      gap:         0.5rem;
-      padding:     0.625rem 0.875rem;
-      font-family: var(--font-human, sans-serif);
-      flex-shrink: 0;
-      flex-wrap:   wrap;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Variants */
-    .blob-action-bar--default  {
-      background:  var(--color-surface, rgba(0,0,0,0.025));
-      border-top:  1px solid var(--color-border, #e5e5e5);
-    }
-    .blob-action-bar--elevated {
-      background:  var(--color-background, #fff);
-      border-top:  1px solid var(--color-border, #e5e5e5);
-      box-shadow:  var(--shadow-sm, 0 -2px 8px rgba(0,0,0,0.05));
-    }
-    .blob-action-bar--ghost { background: transparent; }
-
-    /* Hint label */
-    .blob-action-bar__hint {
-      font-size:  0.8125rem;
-      color:      var(--color-text-subtle, rgba(0,0,0,0.45));
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    /* Spacer — pushes things to opposite sides in 'between' layout */
-    .blob-action-bar__spacer { flex: 1; }
-
-    /* Action group */
-    .blob-action-bar__actions {
-      display:     flex;
-      align-items: center;
-      gap:         0.375rem;
-      flex-wrap:   wrap;
-    }
-
-    /* Trailing slot */
-    .blob-action-bar__trailing {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    /* Alignment helpers applied to root */
-    .blob-action-bar--start   { justify-content: flex-start; }
-    .blob-action-bar--end     { justify-content: flex-end; }
-    .blob-action-bar--center  { justify-content: center; }
-    .blob-action-bar--between { justify-content: space-between; }
-
-    /* Separator */
-    .blob-action-bar__sep {
-      width:       1px;
-      height:      20px;
-      background:  var(--color-border, #e5e5e5);
-      flex-shrink: 0;
-      margin:      0 0.125rem;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -148,7 +72,6 @@ export class ActionBar {
   private _opts:    ActionBarOptions;
 
   constructor(options: ActionBarOptions = {}) {
-    injectStyles();
     this._opts = options;
     const { bar, actionsEl } = this.build();
     this.element    = bar;

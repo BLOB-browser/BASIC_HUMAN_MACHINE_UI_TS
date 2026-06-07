@@ -15,87 +15,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-toggle';
-  style.textContent = `
-    /* Track (the <button>) ------------------------------------------------- */
-    .blob-toggle {
-      position:      relative;
-      display:       inline-flex;
-      align-items:   center;
-      border-radius: var(--radius-full, 9999px);
-      background:    var(--color-border, #d1d5db);
-      border:        none;
-      padding:       0;
-      cursor:        pointer;
-      flex-shrink:   0;
-      transition:    background 0.2s ease;
-    }
-
-    /* Sizes */
-    .blob-toggle--sm { width: 36px; height: 20px; }
-    .blob-toggle--md { width: 44px; height: 24px; }
-    .blob-toggle--lg { width: 52px; height: 28px; }
-
-    /* Thumb */
-    .blob-toggle__thumb {
-      position:        absolute;
-      top:             3px;
-      left:            3px;
-      background:      white;
-      border-radius:   50%;
-      box-shadow:      0 1px 3px rgba(0,0,0,0.25);
-      transition:      transform 0.2s ease;
-      pointer-events:  none;
-    }
-    .blob-toggle--sm .blob-toggle__thumb { width: 14px; height: 14px; }
-    .blob-toggle--md .blob-toggle__thumb { width: 18px; height: 18px; }
-    .blob-toggle--lg .blob-toggle__thumb { width: 22px; height: 22px; }
-
-    /* Checked state */
-    .blob-toggle[aria-checked="true"] {
-      background: var(--color-primary, #000);
-    }
-    .blob-toggle--sm[aria-checked="true"] .blob-toggle__thumb { transform: translateX(16px); }
-    .blob-toggle--md[aria-checked="true"] .blob-toggle__thumb { transform: translateX(20px); }
-    .blob-toggle--lg[aria-checked="true"] .blob-toggle__thumb { transform: translateX(24px); }
-
-    /* Focus */
-    .blob-toggle:focus-visible {
-      outline:        2px solid var(--color-primary, #000);
-      outline-offset: 2px;
-    }
-
-    /* Wrapper — only rendered when a label is provided -------------------- */
-    .blob-toggle-wrapper {
-      display:     inline-flex;
-      align-items: center;
-      gap:         0.5rem;
-      cursor:      pointer;
-      user-select: none;
-    }
-    .blob-toggle-wrapper--disabled {
-      opacity:        0.4;
-      cursor:         not-allowed;
-      pointer-events: none;
-    }
-    .blob-toggle__label {
-      font-family: var(--font-human, sans-serif);
-      font-size:   0.875rem;
-      color:       var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-toggle__label--sm { font-size: 0.75rem; }
-    .blob-toggle__label--lg { font-size: 1rem; }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -122,7 +41,6 @@ export class Toggle {
   private _opts:    ToggleOptions;
 
   constructor(options: ToggleOptions = {}) {
-    injectStyles();
     this._checked = options.checked ?? false;
     this._opts    = options;
     const { track, wrapper } = this.build();

@@ -1,0 +1,65 @@
+.blob-line-chart {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.75rem;
+  width:          100%;
+  font-family:    var(--font-human, sans-serif);
+}
+
+/* SVG */
+.blob-line-chart__svg {
+  display:  block;
+  width:    100%;
+  overflow: visible;
+}
+
+/* SVG class helpers */
+.blob-line-chart__grid-line {
+  stroke:           var(--color-border, #e5e5e5);
+  stroke-dasharray: 4 4;
+}
+.blob-line-chart__axis-line {
+  stroke: var(--color-border, #e5e5e5);
+}
+.blob-line-chart__tick-label {
+  font-family: var(--font-human, sans-serif);
+  font-size:   11px;
+  fill:        var(--color-text-subtle, rgba(0,0,0,0.45));
+}
+
+/* Lines */
+.blob-line-chart__line {
+  fill:        none;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:  opacity 0.15s ease;
+}
+.blob-line-chart__line:hover { opacity: 0.75; }
+
+/* Dots on data points */
+.blob-line-chart__dot {
+  cursor:     pointer;
+  transition: r 0.1s ease, opacity 0.15s ease;
+}
+.blob-line-chart__dot:hover { r: 5; }
+
+/* Legend */
+.blob-line-chart__legend {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.5rem 1rem;
+}
+.blob-line-chart__legend-item {
+  display:     flex;
+  align-items: center;
+  gap:         0.375rem;
+  font-size:   0.75rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+}
+.blob-line-chart__swatch {
+  width:         24px;
+  height:        3px;
+  border-radius: 2px;
+  flex-shrink:   0;
+}

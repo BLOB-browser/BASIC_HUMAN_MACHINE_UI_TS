@@ -29,117 +29,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-alert';
-  style.textContent = `
-    .blob-alert {
-      display:        flex;
-      align-items:    flex-start;
-      gap:            0.75rem;
-      padding:        0.875rem 1rem;
-      border-radius:  var(--radius-m, 6px);
-      border:         1px solid transparent;
-      font-family:    var(--font-human, sans-serif);
-      font-size:      0.875rem;
-      line-height:    1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* icon col */
-    .blob-alert__icon {
-      display:     flex;
-      align-items: center;
-      flex-shrink: 0;
-      margin-top:  1px;
-    }
-    .blob-alert__icon svg,
-    .blob-alert__icon img { width: 18px; height: 18px; }
-
-    /* body */
-    .blob-alert__body    { flex: 1; min-width: 0; }
-    .blob-alert__title   { font-weight: 600; margin-bottom: 0.2rem; }
-    .blob-alert__message { }
-
-    /* dismiss */
-    .blob-alert__dismiss {
-      display:          flex;
-      align-items:      center;
-      justify-content:  center;
-      flex-shrink:      0;
-      width:            28px;
-      height:           28px;
-      margin:           -4px -4px -4px 0;
-      padding:          0;
-      background:       transparent;
-      border:           none;
-      border-radius:    var(--radius-s, 4px);
-      cursor:           pointer;
-      opacity:          0.6;
-      transition:       opacity 0.1s ease, background 0.1s ease;
-    }
-    .blob-alert__dismiss:hover   { opacity: 1; background: rgba(0,0,0,0.06); }
-    .blob-alert__dismiss:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 1px;
-    }
-    .blob-alert__dismiss svg { width: 14px; height: 14px; }
-
-    /* ------------------------------------------------------------------ */
-    /* Variants                                                             */
-    /* ------------------------------------------------------------------ */
-
-    /* info */
-    .blob-alert--info {
-      background:   color-mix(in srgb, var(--color-primary, #2563eb) 8%, transparent);
-      border-color: color-mix(in srgb, var(--color-primary, #2563eb) 30%, transparent);
-      color:        var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-alert--info .blob-alert__icon { color: var(--color-primary, #2563eb); }
-    .blob-alert--info .blob-alert__title { color: var(--color-primary, #2563eb); }
-
-    /* success */
-    .blob-alert--success {
-      background:   rgba(22,163,74,0.08);
-      border-color: rgba(22,163,74,0.3);
-      color:        var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-alert--success .blob-alert__icon  { color: #16a34a; }
-    .blob-alert--success .blob-alert__title { color: #15803d; }
-
-    /* warning */
-    .blob-alert--warning {
-      background:   rgba(217,119,6,0.08);
-      border-color: rgba(217,119,6,0.3);
-      color:        var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-alert--warning .blob-alert__icon  { color: #d97706; }
-    .blob-alert--warning .blob-alert__title { color: #b45309; }
-
-    /* error */
-    .blob-alert--error {
-      background:   rgba(220,38,38,0.08);
-      border-color: rgba(220,38,38,0.3);
-      color:        var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-alert--error .blob-alert__icon  { color: #dc2626; }
-    .blob-alert--error .blob-alert__title { color: #b91c1c; }
-
-    /* dark mode */
-    @media (prefers-color-scheme: dark) {
-      .blob-alert--success { background: rgba(22,163,74,0.14);  border-color: rgba(22,163,74,0.4); }
-      .blob-alert--warning { background: rgba(217,119,6,0.14); border-color: rgba(217,119,6,0.4); }
-      .blob-alert--error   { background: rgba(220,38,38,0.14); border-color: rgba(220,38,38,0.4); }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Default icons (inline SVG strings)
 // ---------------------------------------------------------------------------
@@ -175,7 +64,6 @@ export class Alert {
   private _opts:  AlertOptions;
 
   constructor(options: AlertOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

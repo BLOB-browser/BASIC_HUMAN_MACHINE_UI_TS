@@ -1,0 +1,84 @@
+/* Wrapper */
+.blob-select-wrap {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.3rem;
+  width:          100%;
+}
+
+/* Label */
+.blob-select-label {
+  font-family: var(--font-human, sans-serif);
+  font-size:   0.8125rem;
+  font-weight: 500;
+  color:       var(--color-text-default, rgba(0,0,0,0.8));
+  display:     flex;
+  gap:         0.25rem;
+  align-items: center;
+}
+.blob-select-label .required-mark {
+  color: #dc2626;
+}
+
+/* Control wrapper */
+.blob-select-control {
+  position: relative;
+  display:  flex;
+}
+
+/* Native select */
+.blob-select-native {
+  width:         100%;
+  padding:       0.5rem 2rem 0.5rem 0.75rem;
+  appearance:    none;
+  -webkit-appearance: none;
+  background-color:   var(--color-background, #fff);
+  border:        1px solid var(--color-border, #d1d5db);
+  border-radius: var(--radius-m, 6px);
+  font-family:   var(--font-human, sans-serif);
+  font-size:     0.875rem;
+  color:         var(--color-text-default, rgba(0,0,0,0.8));
+  cursor:        pointer;
+  outline:       none;
+  transition:    border-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.blob-select-native:focus {
+  border-color: var(--color-primary, #000);
+  box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-primary, #000) 15%, transparent);
+}
+.blob-select-native:disabled {
+  opacity:        0.5;
+  cursor:         not-allowed;
+  pointer-events: none;
+}
+
+/* Error */
+.blob-select-wrap--error .blob-select-native {
+  border-color: #dc2626;
+}
+.blob-select-wrap--error .blob-select-native:focus {
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+}
+
+/* Chevron icon */
+.blob-select-chevron {
+  position: absolute;
+  right:    0.625rem;
+  top:      50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color:    var(--color-text-subtle, rgba(0,0,0,0.4));
+}
+
+/* Size variants */
+.blob-select-wrap--sm .blob-select-native { padding: 0.3rem 2rem 0.3rem 0.625rem; font-size: 0.8125rem; }
+.blob-select-wrap--lg .blob-select-native { padding: 0.75rem 2rem 0.75rem 0.875rem; font-size: 1rem; }
+
+/* Helper / error text */
+.blob-select-helper {
+  font-family: var(--font-human, sans-serif);
+  font-size:   0.75rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.45));
+}
+.blob-select-wrap--error .blob-select-helper { color: #dc2626; }

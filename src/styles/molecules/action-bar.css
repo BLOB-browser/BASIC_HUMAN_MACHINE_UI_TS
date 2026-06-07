@@ -1,0 +1,63 @@
+.blob-action-bar {
+  display:          flex;
+  align-items:      center;
+  gap:              0.25rem;
+  background-color: var(--color-surface, #fff);
+  border:           1px solid var(--color-border, #e5e5e5);
+  border-radius:    var(--radius-m, 6px);
+  padding:          0.25rem 0.5rem;
+}
+
+/* Variants */
+.blob-action-bar--elevated {
+  border-color: transparent;
+  box-shadow:   0 2px 8px rgba(0,0,0,0.12);
+}
+.blob-action-bar--ghost {
+  background:   transparent;
+  border-color: transparent;
+  box-shadow:   none;
+}
+
+/* Hint slot (left text) */
+.blob-action-bar__hint {
+  font-family: var(--font-human, sans-serif);
+  font-size:   0.8125rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+  white-space: nowrap;
+  padding:     0 0.25rem;
+}
+
+/* Spacer */
+.blob-action-bar__spacer {
+  flex: 1;
+}
+
+/* Actions group */
+.blob-action-bar__actions {
+  display:     flex;
+  align-items: center;
+  gap:         0.25rem;
+}
+
+/* Trailing slot */
+.blob-action-bar__trailing {
+  display:     flex;
+  align-items: center;
+  gap:         0.25rem;
+}
+
+/* Alignment helpers */
+.blob-action-bar--start   { justify-content: flex-start; }
+.blob-action-bar--center  { justify-content: center; }
+.blob-action-bar--end     { justify-content: flex-end; }
+.blob-action-bar--between { justify-content: space-between; }
+
+/* Separator */
+.blob-action-bar__sep {
+  width:       1px;
+  height:      1.25rem;
+  background:  var(--color-border, #e5e5e5);
+  flex-shrink: 0;
+  margin:      0 0.125rem;
+}

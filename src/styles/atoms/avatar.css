@@ -1,0 +1,67 @@
+.blob-avatar {
+  position:        relative;
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  border-radius:   50%;
+  overflow:        hidden;
+  background:      var(--color-surface-elevated, #e0e0e0);
+  color:           var(--color-text-default, rgba(0,0,0,0.7));
+  font-family:     var(--font-human, sans-serif);
+  font-weight:     600;
+  flex-shrink:     0;
+  user-select:     none;
+}
+
+/* Sizes */
+.blob-avatar--xs { width: 24px; height: 24px; font-size: 0.6rem;   }
+.blob-avatar--sm { width: 32px; height: 32px; font-size: 0.75rem;  }
+.blob-avatar--md { width: 40px; height: 40px; font-size: 0.875rem; }
+.blob-avatar--lg { width: 56px; height: 56px; font-size: 1.125rem; }
+.blob-avatar--xl { width: 80px; height: 80px; font-size: 1.5rem;   }
+
+/* Shape */
+.blob-avatar--square { border-radius: var(--radius-m, 6px); overflow: hidden; }
+
+/* Image */
+.blob-avatar__img {
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  display:    block;
+}
+
+/* Status dot — positioned outside the overflow:hidden via outline trick */
+.blob-avatar {
+  /* Re-enable overflow visible so status dot shows */
+  overflow: visible;
+}
+.blob-avatar__img {
+  /* Keep image clipped via border-radius on the img itself */
+  border-radius: inherit;
+  overflow:      hidden;
+}
+.blob-avatar__initials {
+  border-radius: inherit;
+}
+.blob-avatar__status {
+  position:     absolute;
+  bottom:       0;
+  right:        0;
+  border-radius: 50%;
+  border:       2px solid var(--color-background, #fff);
+  z-index:      1;
+}
+
+/* Status dot sizes (scale with avatar) */
+.blob-avatar--xs .blob-avatar__status { width: 6px;  height: 6px;  border-width: 1.5px; }
+.blob-avatar--sm .blob-avatar__status { width: 8px;  height: 8px;  }
+.blob-avatar--md .blob-avatar__status { width: 10px; height: 10px; }
+.blob-avatar--lg .blob-avatar__status { width: 12px; height: 12px; border-width: 2.5px; }
+.blob-avatar--xl .blob-avatar__status { width: 16px; height: 16px; border-width: 3px;   }
+
+/* Status colours */
+.blob-avatar__status--online  { background: #22c55e; }
+.blob-avatar__status--away    { background: #f59e0b; }
+.blob-avatar__status--busy    { background: #ef4444; }
+.blob-avatar__status--offline { background: #9ca3af; }

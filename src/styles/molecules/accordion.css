@@ -1,0 +1,93 @@
+.blob-accordion {
+  display:        flex;
+  flex-direction: column;
+  width:          100%;
+}
+
+/* Item */
+.blob-accordion-item {
+  border-bottom: 1px solid var(--color-border, #e5e5e5);
+}
+.blob-accordion-item:first-child {
+  border-top: 1px solid var(--color-border, #e5e5e5);
+}
+
+/* Trigger button */
+.blob-accordion-trigger {
+  display:         flex;
+  align-items:     center;
+  gap:             0.5rem;
+  width:           100%;
+  background:      transparent;
+  border:          none;
+  padding:         0.75rem 1rem;
+  cursor:          pointer;
+  text-align:      left;
+  font-family:     var(--font-human, sans-serif);
+  font-size:       0.9375rem;
+  font-weight:     500;
+  color:           var(--color-text-primary, #000);
+  transition:      background 0.1s ease;
+}
+.blob-accordion-trigger:hover {
+  background: var(--color-surface, rgba(0,0,0,0.03));
+}
+.blob-accordion-trigger:focus-visible {
+  outline:        2px solid var(--color-primary, #000);
+  outline-offset: -2px;
+}
+.blob-accordion-trigger[aria-expanded="true"] {
+  color: var(--color-primary, #000);
+}
+
+/* Leading icon slot */
+.blob-accordion-trigger__leading {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.45));
+}
+
+/* Label span */
+.blob-accordion-trigger__label {
+  flex: 1;
+}
+
+/* Chevron */
+.blob-accordion-trigger__chevron {
+  display:    flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition:  transform 0.2s ease;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.45));
+}
+.blob-accordion-trigger[aria-expanded="true"] .blob-accordion-trigger__chevron {
+  transform: rotate(180deg);
+}
+
+/* Panel wrapper — grid trick for animated open/close */
+.blob-accordion-panel-wrap {
+  display:        grid;
+  grid-template-rows: 0fr;
+  transition:     grid-template-rows 0.2s ease;
+  overflow:       hidden;
+}
+.blob-accordion-item--open .blob-accordion-panel-wrap {
+  grid-template-rows: 1fr;
+}
+
+/* Inner must have overflow:hidden for the grid trick */
+.blob-accordion-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Content area */
+.blob-accordion-panel-content {
+  padding:     0.5rem 1rem 1rem;
+  font-family: var(--font-human, sans-serif);
+  font-size:   0.875rem;
+  color:       var(--color-text-default, rgba(0,0,0,0.8));
+  line-height: 1.6;
+}

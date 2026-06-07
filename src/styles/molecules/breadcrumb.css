@@ -1,0 +1,63 @@
+/* List container (nav > ol) */
+.blob-breadcrumb {
+  display:    flex;
+  align-items: center;
+  flex-wrap:  wrap;
+  list-style: none;
+  margin:     0;
+  padding:    0;
+  gap:        0.25rem;
+  font-family: var(--font-human, sans-serif);
+  font-size:  0.8125rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Item */
+.blob-breadcrumb__item {
+  display:     flex;
+  align-items: center;
+  gap:         0.25rem;
+}
+
+/* Link */
+.blob-breadcrumb__link {
+  color:           var(--color-text-subtle, rgba(0,0,0,0.5));
+  text-decoration: none;
+  border-radius:   var(--radius-s, 3px);
+  padding:         0.125rem 0.25rem;
+  transition:      color 0.1s ease, background 0.1s ease;
+}
+.blob-breadcrumb__link:hover {
+  color:      var(--color-text-primary, #000);
+  background: var(--color-surface, rgba(0,0,0,0.04));
+}
+.blob-breadcrumb__link:focus-visible {
+  outline:        2px solid var(--color-primary, #000);
+  outline-offset: 1px;
+}
+
+/* Current page (aria-current) */
+.blob-breadcrumb__current {
+  color:       var(--color-text-primary, #000);
+  font-weight: 500;
+  padding:     0.125rem 0.25rem;
+}
+
+/* Icon within a crumb */
+.blob-breadcrumb__icon {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.blob-breadcrumb__icon svg,
+.blob-breadcrumb__icon img {
+  width:  0.875rem;
+  height: 0.875rem;
+}
+
+/* Separator */
+.blob-breadcrumb__sep {
+  color:       var(--color-text-subtle, rgba(0,0,0,0.35));
+  user-select: none;
+  line-height: 1;
+}

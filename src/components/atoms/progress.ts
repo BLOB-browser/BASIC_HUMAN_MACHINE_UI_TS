@@ -17,70 +17,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-progress';
-  style.textContent = `
-    .blob-progress {
-      display:        flex;
-      flex-direction: column;
-      gap:            0.375rem;
-      width:          100%;
-    }
-
-    /* Header row — label + value */
-    .blob-progress__header {
-      display:         flex;
-      justify-content: space-between;
-      align-items:     baseline;
-      font-family:     var(--font-human, sans-serif);
-      font-size:       0.75rem;
-      color:           var(--color-text-subtle, rgba(0,0,0,0.45));
-    }
-
-    /* Track */
-    .blob-progress__track {
-      width:         100%;
-      height:        6px;
-      border-radius: var(--radius-full, 9999px);
-      background:    var(--color-surface-elevated, #e5e5e5);
-      overflow:      hidden;
-    }
-    .blob-progress--sm .blob-progress__track { height: 4px;  }
-    .blob-progress--lg .blob-progress__track { height: 10px; }
-
-    /* Fill bar */
-    .blob-progress__bar {
-      height:        100%;
-      border-radius: var(--radius-full, 9999px);
-      background:    var(--color-primary, #000);
-      transition:    width 0.3s ease;
-      max-width:     100%;
-    }
-
-    /* Colour variants */
-    .blob-progress--success .blob-progress__bar { background: #22c55e; }
-    .blob-progress--warning .blob-progress__bar { background: #f59e0b; }
-    .blob-progress--danger  .blob-progress__bar { background: #ef4444; }
-
-    /* Indeterminate */
-    .blob-progress--indeterminate .blob-progress__bar {
-      width:     35% !important;
-      animation: blob-progress-slide 1.4s ease-in-out infinite;
-    }
-    @keyframes blob-progress-slide {
-      0%   { transform: translateX(-150%); }
-      100% { transform: translateX(385%);  }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -109,7 +45,6 @@ export class Progress {
   private _opts:   ProgressOptions;
 
   constructor(options: ProgressOptions = {}) {
-    injectStyles();
     this._opts   = { value: 0, size: 'md', variant: 'default', ...options };
     this.element = this.build();
   }

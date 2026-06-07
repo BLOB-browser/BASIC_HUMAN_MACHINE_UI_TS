@@ -1,0 +1,71 @@
+/* Scroll wrapper */
+.blob-table {
+  overflow-x:  auto;
+  width:       100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* <table> element */
+.blob-table__el {
+  width:           100%;
+  border-collapse: collapse;
+  font-family:     var(--font-human, sans-serif);
+  font-size:       0.875rem;
+  color:           var(--color-text-default, rgba(0,0,0,0.8));
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Density via custom property on the table */
+.blob-table--compact  { --_tc-pad: 0.375rem 0.75rem; }
+.blob-table--default  { --_tc-pad: 0.625rem 0.875rem; }
+.blob-table--comfort  { --_tc-pad: 0.875rem 1rem; }
+
+/* Sticky header */
+.blob-table__el thead th {
+  position: sticky;
+  top:      0;
+  z-index:  1;
+}
+
+/* Row */
+.blob-table__row {
+  transition: background 0.1s ease;
+}
+.blob-table__row:hover {
+  background: var(--color-surface, rgba(0,0,0,0.025));
+}
+.blob-table--clickable .blob-table__row { cursor: pointer; }
+.blob-table--clickable .blob-table__row:active {
+  background: var(--color-surface-elevated, rgba(0,0,0,0.05));
+}
+
+/* Striped */
+.blob-table--striped .blob-table__row:nth-child(even) {
+  background: var(--color-surface, rgba(0,0,0,0.02));
+}
+.blob-table--striped .blob-table__row:nth-child(even):hover {
+  background: var(--color-surface, rgba(0,0,0,0.04));
+}
+
+/* Selected row */
+.blob-table__row--selected {
+  background: color-mix(in srgb, var(--color-primary, #000) 8%, transparent) !important;
+}
+
+/* Checkbox cell */
+.blob-table__checkbox-cell {
+  width:   40px;
+  padding: 0.25rem 0.5rem;
+}
+.blob-table__checkbox-cell input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--color-primary, #000);
+}
+
+/* Empty state row */
+.blob-table__empty-row td {
+  text-align:  center;
+  padding:     2rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.4));
+  font-size:   0.875rem;
+}

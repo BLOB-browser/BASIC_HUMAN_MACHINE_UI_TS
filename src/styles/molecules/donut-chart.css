@@ -1,0 +1,65 @@
+.blob-donut-chart {
+  display:     flex;
+  flex-direction: column;
+  align-items: center;
+  gap:         0.75rem;
+  font-family: var(--font-human, sans-serif);
+}
+
+/* SVG wrapper — needed for the center overlay */
+.blob-donut-chart__svg-wrap {
+  position: relative;
+  display:  inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG element */
+.blob-donut-chart__svg {
+  display: block;
+  transform: rotate(-90deg);
+}
+
+/* Center label — absolutely positioned over the donut */
+.blob-donut-chart__center {
+  position:        absolute;
+  top:             50%;
+  left:            50%;
+  transform:       translate(-50%, -50%);
+  text-align:      center;
+  pointer-events:  none;
+}
+.blob-donut-chart__center-value {
+  display:     block;
+  font-size:   1.5rem;
+  font-weight: 700;
+  color:       var(--color-text-primary, #000);
+  line-height: 1;
+}
+.blob-donut-chart__center-label {
+  display:   block;
+  font-size: 0.75rem;
+  color:     var(--color-text-subtle, rgba(0,0,0,0.45));
+  margin-top: 0.25rem;
+}
+
+/* Legend */
+.blob-donut-chart__legend {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.5rem 1rem;
+  justify-content: center;
+}
+.blob-donut-chart__legend-item {
+  display:     flex;
+  align-items: center;
+  gap:         0.375rem;
+  font-size:   0.75rem;
+  color:       var(--color-text-subtle, rgba(0,0,0,0.5));
+}
+.blob-donut-chart__swatch {
+  width:         10px;
+  height:        10px;
+  border-radius: 50%;
+  flex-shrink:   0;
+}

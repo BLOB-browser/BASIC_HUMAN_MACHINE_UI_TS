@@ -63,121 +63,6 @@
 
 import { TableCell } from '../atoms/table-cell';
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-table';
-  style.textContent = `
-    /* ---- Scroll wrapper ---- */
-    .blob-table {
-      width:          100%;
-      overflow-x:     auto;
-      border:         1px solid var(--color-border, #e5e5e5);
-      border-radius:  var(--radius-m, 8px);
-      font-family:    var(--font-human, sans-serif);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ---- Table ---- */
-    .blob-table table {
-      width:           100%;
-      border-collapse: collapse;
-      border-spacing:  0;
-    }
-
-    /* ---- Density via CSS custom property — inherited by TableCell ---- */
-    .blob-table--compact     { --_tc-pad: 0.375rem 0.625rem; }
-    .blob-table--default     { --_tc-pad: 0.625rem 0.875rem; }
-    .blob-table--comfortable { --_tc-pad: 0.875rem 1.125rem; }
-
-    /* ---- Sticky header ---- */
-    .blob-table--sticky .blob-table-cell--header {
-      position: sticky;
-      top:      0;
-      z-index:  2;
-    }
-
-    /* ---- Rows ---- */
-    .blob-table__row {
-      transition: background 0.1s ease;
-    }
-    .blob-table__row:last-child .blob-table-cell {
-      border-bottom: none;
-    }
-    .blob-table__row--clickable { cursor: pointer; }
-    .blob-table__row--clickable:hover .blob-table-cell--data,
-    .blob-table__row:hover .blob-table-cell--data {
-      background: var(--color-surface, rgba(0,0,0,0.025));
-    }
-
-    /* Striped — odd rows  */
-    .blob-table--striped .blob-table__row:nth-child(odd) .blob-table-cell--data {
-      background: var(--color-surface, rgba(0,0,0,0.02));
-    }
-    .blob-table--striped .blob-table__row:nth-child(odd):hover .blob-table-cell--data {
-      background: var(--color-surface-elevated, rgba(0,0,0,0.05));
-    }
-
-    /* Selected */
-    .blob-table__row--selected .blob-table-cell--data {
-      background: color-mix(in srgb, var(--color-primary, #2563eb) 6%, transparent) !important;
-    }
-
-    /* ---- Checkbox cell ---- */
-    .blob-table-cell--checkbox {
-      width:   40px;
-      padding: var(--_tc-pad, 0.625rem 0.875rem);
-    }
-    .blob-table__checkbox {
-      width:          16px;
-      height:         16px;
-      accent-color:   var(--color-primary, #2563eb);
-      cursor:         pointer;
-      flex-shrink:    0;
-      margin:         0;
-    }
-
-    /* ---- Empty state row ---- */
-    .blob-table__empty-cell {
-      padding:    2.5rem 1rem;
-      text-align: center;
-      color:      var(--color-text-subtle, rgba(0,0,0,0.45));
-      font-size:  0.875rem;
-      border-bottom: none;
-    }
-
-    /* ---- Loading skeleton ---- */
-    .blob-table__skel {
-      display:       block;
-      height:        14px;
-      border-radius: var(--radius-s, 3px);
-      background: linear-gradient(
-        90deg,
-        var(--color-surface, rgba(0,0,0,0.04)) 25%,
-        var(--color-surface-elevated, rgba(0,0,0,0.08)) 50%,
-        var(--color-surface, rgba(0,0,0,0.04)) 75%
-      );
-      background-size: 200% 100%;
-      animation:      blob-table-shimmer 1.4s infinite linear;
-    }
-    @keyframes blob-table-shimmer {
-      0%   { background-position:  200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .blob-table {
-        border-color: var(--color-border, rgba(255,255,255,0.1));
-      }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -237,7 +122,6 @@ export class Table {
   private _headerCells: Map<string, TableCell> = new Map();
 
   constructor(options: TableOptions) {
-    injectStyles();
     this._opts    = options;
     this._cols    = options.columns;
     this._rows    = options.rows ?? [];

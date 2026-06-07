@@ -1,0 +1,63 @@
+.blob-tooltip-wrapper {
+  position: relative;
+  display:  inline-flex;
+}
+
+.blob-tooltip__content {
+  position:        absolute;
+  background:      var(--color-text-primary, rgba(0,0,0,0.9));
+  color:           white;
+  border-radius:   var(--radius-s, 4px);
+  padding:         0.3rem 0.625rem;
+  font-family:     var(--font-human, sans-serif);
+  font-size:       0.75rem;
+  font-weight:     400;
+  line-height:     1.4;
+  white-space:     nowrap;
+  max-width:       240px;
+  overflow:        hidden;
+  text-overflow:   ellipsis;
+  pointer-events:  none;
+  z-index:         9999;
+  /* Hidden by default */
+  opacity:         0;
+  visibility:      hidden;
+  transition:      opacity 0.12s ease, visibility 0.12s ease;
+}
+
+/* Show on hover / focus-within */
+.blob-tooltip-wrapper:hover          .blob-tooltip__content,
+.blob-tooltip-wrapper:focus-within   .blob-tooltip__content {
+  opacity:    1;
+  visibility: visible;
+}
+
+/* Placements ----------------------------------------------------------- */
+.blob-tooltip__content--top {
+  bottom:    calc(100% + 6px);
+  left:      50%;
+  transform: translateX(-50%);
+}
+.blob-tooltip__content--bottom {
+  top:       calc(100% + 6px);
+  left:      50%;
+  transform: translateX(-50%);
+}
+.blob-tooltip__content--left {
+  right:     calc(100% + 6px);
+  top:       50%;
+  transform: translateY(-50%);
+}
+.blob-tooltip__content--right {
+  left:      calc(100% + 6px);
+  top:       50%;
+  transform: translateY(-50%);
+}
+
+/* Dark-mode: lighter background */
+@media (prefers-color-scheme: dark) {
+  .blob-tooltip__content {
+    background: rgba(255,255,255,0.92);
+    color:      rgba(0,0,0,0.9);
+  }
+}

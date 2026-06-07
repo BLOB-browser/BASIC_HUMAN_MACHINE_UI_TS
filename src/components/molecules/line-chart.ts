@@ -40,84 +40,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-line-chart';
-  style.textContent = `
-    .blob-line-chart {
-      display:     block;
-      width:       100%;
-      font-family: var(--font-machine, monospace);
-      -webkit-font-smoothing: antialiased;
-    }
-    .blob-line-chart svg { display: block; width: 100%; overflow: visible; }
-
-    /* Grid */
-    .blob-line-chart__grid {
-      stroke:       var(--color-border, #e5e5e5);
-      stroke-width: 1;
-    }
-    /* Axes */
-    .blob-line-chart__axis {
-      stroke:       var(--color-border, #e5e5e5);
-      stroke-width: 1;
-    }
-    /* Tick labels */
-    .blob-line-chart__tick {
-      fill:      var(--color-text-subtle, rgba(0,0,0,0.45));
-      font-size: 11px;
-    }
-    /* Axis labels */
-    .blob-line-chart__label {
-      fill:        var(--color-text-default, rgba(0,0,0,0.7));
-      font-size:   12px;
-      font-weight: 500;
-    }
-    /* Data lines */
-    .blob-line-chart__line {
-      fill:             none;
-      stroke-width:     2;
-      stroke-linecap:   round;
-      stroke-linejoin:  round;
-    }
-    /* Data dots */
-    .blob-line-chart__dot {
-      r:      4;
-      stroke: var(--color-background, #fff);
-      stroke-width: 2;
-    }
-
-    /* Legend */
-    .blob-line-chart__legend {
-      display:         flex;
-      flex-wrap:       wrap;
-      gap:             0.375rem 0.875rem;
-      justify-content: center;
-      font-size:       0.8rem;
-      margin-top:      0.5rem;
-      font-family:     var(--font-human, sans-serif);
-    }
-    .blob-line-chart__legend-item {
-      display:     flex;
-      align-items: center;
-      gap:         0.375rem;
-      color:       var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-line-chart__legend-swatch {
-      width:         24px;
-      height:        3px;
-      border-radius: 2px;
-      flex-shrink:   0;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Palette
 // ---------------------------------------------------------------------------
@@ -182,7 +104,6 @@ export class LineChart {
   private _opts:  LineChartOptions;
 
   constructor(options: LineChartOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

@@ -39,107 +39,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-top-bar';
-  style.textContent = `
-    .blob-top-bar {
-      display:        flex;
-      align-items:    center;
-      gap:            0.25rem;
-      height:         44px;
-      padding:        0 0.5rem;
-      background:     var(--color-background, #fff);
-      font-family:    var(--font-human, sans-serif);
-      flex-shrink:    0;
-      -webkit-font-smoothing: antialiased;
-      user-select:    none;
-    }
-
-    /* Variants */
-    .blob-top-bar--default  { border-bottom: 1px solid var(--color-border, #e5e5e5); }
-    .blob-top-bar--floating { box-shadow: var(--shadow-sm, 0 1px 6px rgba(0,0,0,0.08)); }
-    .blob-top-bar--ghost    { /* no border, no shadow */ }
-
-    /* Draggable strip (for detached windows) */
-    .blob-top-bar--draggable { cursor: grab; -webkit-app-region: drag; }
-    .blob-top-bar--draggable .blob-top-bar__btn { -webkit-app-region: no-drag; }
-
-    /* Zones */
-    .blob-top-bar__leading  { display: flex; align-items: center; gap: 0.125rem; flex-shrink: 0; }
-    .blob-top-bar__trailing { display: flex; align-items: center; gap: 0.125rem; flex-shrink: 0; }
-    .blob-top-bar__title-wrap {
-      flex:            1;
-      min-width:       0;
-      display:         flex;
-      align-items:     center;
-      padding:         0 0.375rem;
-    }
-
-    /* Title */
-    .blob-top-bar__title {
-      font-size:     0.875rem;
-      font-weight:   500;
-      color:         var(--color-text-primary, #000);
-      overflow:      hidden;
-      text-overflow: ellipsis;
-      white-space:   nowrap;
-      line-height:   1.3;
-    }
-    .blob-top-bar__title--center {
-      width:       100%;
-      text-align:  center;
-    }
-
-    /* Icon button shared style */
-    .blob-top-bar__btn {
-      display:          flex;
-      align-items:      center;
-      justify-content:  center;
-      width:            32px;
-      height:           32px;
-      padding:          0;
-      background:       transparent;
-      border:           none;
-      border-radius:    var(--radius-m, 6px);
-      color:            var(--color-text-subtle, rgba(0,0,0,0.45));
-      cursor:           pointer;
-      transition:       background 0.1s ease, color 0.1s ease;
-      flex-shrink:      0;
-    }
-    .blob-top-bar__btn:hover {
-      background: var(--color-surface, rgba(0,0,0,0.05));
-      color:      var(--color-text-default, rgba(0,0,0,0.8));
-    }
-    .blob-top-bar__btn:focus-visible {
-      outline:        2px solid var(--color-primary, #000);
-      outline-offset: 1px;
-    }
-    .blob-top-bar__btn svg { width: 16px; height: 16px; }
-
-    /* Close button — slightly more visible */
-    .blob-top-bar__btn--close:hover {
-      background: rgba(220,38,38,0.08);
-      color:      #dc2626;
-    }
-
-    /* Separator between zones */
-    .blob-top-bar__sep {
-      width:       1px;
-      height:      18px;
-      background:  var(--color-border, #e5e5e5);
-      margin:      0 0.25rem;
-      flex-shrink: 0;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // Built-in SVG icons
 const ICONS = {
   close:      '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12.5 3.5l-9 9M3.5 3.5l9 9"/></svg>',
@@ -195,7 +94,6 @@ export class TopBar {
   private _opts:  TopBarOptions;
 
   constructor(options: TopBarOptions = {}) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

@@ -30,47 +30,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-sparkline';
-  style.textContent = `
-    .blob-sparkline {
-      display: block;
-      width:   100%;
-    }
-    .blob-sparkline svg {
-      display:    block;
-      width:      100%;
-      overflow:   visible;
-    }
-    .blob-sparkline__line {
-      fill:             none;
-      stroke:           var(--blob-sparkline-color, var(--color-primary, #2563eb));
-      stroke-width:     1.5;
-      stroke-linecap:   round;
-      stroke-linejoin:  round;
-    }
-    .blob-sparkline__area {
-      fill:    var(--blob-sparkline-color, var(--color-primary, #2563eb));
-      opacity: 0.12;
-    }
-    .blob-sparkline__bar {
-      fill:         var(--blob-sparkline-color, var(--color-primary, #2563eb));
-      opacity:      0.7;
-      rx:           1;
-    }
-    .blob-sparkline__bar--last {
-      opacity: 1;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -105,7 +64,6 @@ export class Sparkline {
   private _opts:  SparklineOptions;
 
   constructor(options: SparklineOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }

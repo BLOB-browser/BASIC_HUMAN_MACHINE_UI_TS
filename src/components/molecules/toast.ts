@@ -28,125 +28,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-toast';
-  style.textContent = `
-    /* Region — fixed container, one per position */
-    .blob-toast-region {
-      position:       fixed;
-      z-index:        10000;
-      display:        flex;
-      flex-direction: column;
-      gap:            0.5rem;
-      pointer-events: none;
-      max-width:      min(420px, calc(100vw - 2rem));
-    }
-    /* Positions */
-    .blob-toast-region--top-right    { top: 1rem; right: 1rem;  align-items: flex-end; }
-    .blob-toast-region--top-left     { top: 1rem; left: 1rem;   align-items: flex-start; }
-    .blob-toast-region--bottom-right { bottom: 1rem; right: 1rem; align-items: flex-end; flex-direction: column-reverse; }
-    .blob-toast-region--bottom-left  { bottom: 1rem; left: 1rem;  align-items: flex-start; flex-direction: column-reverse; }
-    .blob-toast-region--top-center    { top: 1rem; left: 50%; transform: translateX(-50%); align-items: center; }
-    .blob-toast-region--bottom-center { bottom: 1rem; left: 50%; transform: translateX(-50%); align-items: center; flex-direction: column-reverse; }
-
-    /* Toast item */
-    .blob-toast {
-      pointer-events: all;
-      display:        flex;
-      align-items:    flex-start;
-      gap:            0.625rem;
-      padding:        0.75rem 1rem;
-      background:     var(--color-background, #fff);
-      border:         1px solid var(--color-border, #e5e5e5);
-      border-radius:  var(--radius-l, 10px);
-      box-shadow:     var(--shadow-md, 0 4px 16px rgba(0,0,0,0.1));
-      font-family:    var(--font-human, sans-serif);
-      font-size:      0.875rem;
-      line-height:    1.45;
-      max-width:      100%;
-      min-width:      240px;
-      -webkit-font-smoothing: antialiased;
-      /* Entry */
-      animation: blob-toast-in 0.2s cubic-bezier(0.22,1,0.36,1);
-    }
-    @keyframes blob-toast-in {
-      from { opacity: 0; transform: translateY(-8px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .blob-toast--exit {
-      animation: blob-toast-out 0.15s ease forwards;
-    }
-    @keyframes blob-toast-out {
-      to { opacity: 0; transform: scale(0.95); }
-    }
-
-    /* Icon */
-    .blob-toast__icon {
-      flex-shrink: 0;
-      display:     flex;
-      align-items: center;
-      margin-top:  1px;
-    }
-    .blob-toast__icon svg { width: 17px; height: 17px; }
-
-    /* Body */
-    .blob-toast__body    { flex: 1; min-width: 0; }
-    .blob-toast__title   { font-weight: 600; color: var(--color-text-primary, #000); }
-    .blob-toast__message { color: var(--color-text-default, rgba(0,0,0,0.8)); margin-top: 0.1rem; }
-
-    /* Progress bar */
-    .blob-toast__progress {
-      position:      absolute;
-      bottom:        0;
-      left:          0;
-      height:        2px;
-      border-radius: 0 0 var(--radius-l, 10px) var(--radius-l, 10px);
-      background:    var(--color-primary, #000);
-      opacity:       0.3;
-      transform-origin: left;
-      /* width driven by JS animation */
-    }
-
-    /* Dismiss */
-    .blob-toast__dismiss {
-      display:          flex;
-      align-items:      center;
-      justify-content:  center;
-      flex-shrink:      0;
-      width:            24px;
-      height:           24px;
-      padding:          0;
-      background:       transparent;
-      border:           none;
-      border-radius:    var(--radius-s, 4px);
-      cursor:           pointer;
-      color:            var(--color-text-subtle, rgba(0,0,0,0.45));
-      transition:       background 0.1s ease, color 0.1s ease;
-    }
-    .blob-toast__dismiss:hover { background: var(--color-surface, rgba(0,0,0,0.05)); color: var(--color-text-default, rgba(0,0,0,0.8)); }
-    .blob-toast__dismiss svg   { width: 13px; height: 13px; }
-
-    /* Variant icon colors */
-    .blob-toast--info    .blob-toast__icon { color: var(--color-primary, #2563eb); }
-    .blob-toast--success .blob-toast__icon { color: #16a34a; }
-    .blob-toast--warning .blob-toast__icon { color: #d97706; }
-    .blob-toast--error   .blob-toast__icon { color: #dc2626; }
-
-    /* Variant left border accent */
-    .blob-toast--info    { border-left: 3px solid var(--color-primary, #2563eb); }
-    .blob-toast--success { border-left: 3px solid #16a34a; }
-    .blob-toast--warning { border-left: 3px solid #d97706; }
-    .blob-toast--error   { border-left: 3px solid #dc2626; }
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -182,7 +63,6 @@ export class Toast {
   private _opts:  ToastOptions;
 
   constructor(options: ToastOptions) {
-    injectStyles();
     this._opts   = options;
     this.element = this.build();
   }
@@ -256,7 +136,6 @@ const _regions = new Map<ToastPosition, HTMLElement>();
 function getRegion(position: ToastPosition): HTMLElement {
   let region = _regions.get(position);
   if (!region) {
-    injectStyles();
     region = document.createElement('div');
     region.className = `blob-toast-region blob-toast-region--${position}`;
     region.setAttribute('aria-live', 'polite');

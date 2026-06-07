@@ -1,0 +1,93 @@
+/* Base ------------------------------------------------------------------ */
+.blob-button {
+  background-color: var(--color-primary, #000);
+  color:            var(--color-on-primary, #fff);
+  border-radius:    var(--radius-m, 6px);
+  font-family:      var(--font-human, sans-serif);
+  border:           none;
+  cursor:           pointer;
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  gap:              0.375rem;
+  text-decoration:  none;
+  white-space:      nowrap;
+  user-select:      none;
+  transition:       opacity 0.15s ease, box-shadow 0.15s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.blob-button:hover:not(:disabled):not(.blob-button--disabled) {
+  opacity: 0.85;
+}
+.blob-button:active:not(:disabled):not(.blob-button--disabled) {
+  opacity: 0.70;
+}
+.blob-button:focus-visible {
+  outline: 2px solid var(--color-primary, #000);
+  outline-offset: 2px;
+}
+.blob-button:disabled,
+.blob-button--disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading spinner -------------------------------------------------------- */
+.blob-button--loading {
+  position: relative;
+  cursor: wait;
+}
+.blob-button--loading > *:not(.blob-button__spinner) {
+  opacity: 0;
+}
+.blob-button__spinner {
+  position:  absolute;
+  width:     1em;
+  height:    1em;
+  border:    2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: blob-spin 0.6s linear infinite;
+}
+@keyframes blob-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Variants --------------------------------------------------------------- */
+.blob-button--primary {
+  background-color: var(--color-primary, #000);
+  color:            var(--color-on-primary, #fff);
+  border:           none;
+}
+
+.blob-button--secondary {
+  background-color: var(--color-surface, #fff);
+  color:            var(--color-text-primary, #000);
+  border:           1px solid var(--color-border, #e5e5e5);
+}
+
+.blob-button--ghost {
+  background-color: transparent;
+  color:            var(--color-text-primary, #000);
+  border:           1px solid transparent;
+}
+.blob-button--ghost:hover:not(:disabled) {
+  background-color: var(--color-surface, rgba(0,0,0,0.05));
+  opacity: 1;
+}
+
+.blob-button--danger {
+  background-color: #dc2626;
+  color:            #fff;
+  border:           none;
+}
+.blob-button--danger:focus-visible {
+  outline-color: #dc2626;
+}
+
+/* Icon-only ------------------------------------------------------------- */
+.blob-button--icon-only {
+  aspect-ratio: 1;
+}

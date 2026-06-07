@@ -47,98 +47,6 @@
  * ```
  */
 
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-table-cell';
-  style.textContent = `
-    /* ---- Base ---- */
-    .blob-table-cell {
-      padding:        var(--_tc-pad, 0.625rem 0.875rem);
-      text-align:     left;
-      vertical-align: middle;
-      border-bottom:  1px solid var(--color-border, #e5e5e5);
-      font-family:    var(--font-human, sans-serif);
-      -webkit-font-smoothing: antialiased;
-      white-space:    nowrap;
-    }
-
-    /* ---- Variants ---- */
-    .blob-table-cell--header {
-      font-size:       0.75rem;
-      font-weight:     600;
-      color:           var(--color-text-subtle, rgba(0,0,0,0.45));
-      text-transform:  uppercase;
-      letter-spacing:  0.04em;
-      background:      var(--color-surface, rgba(0,0,0,0.025));
-      position:        sticky;
-      top:             0;
-      z-index:         1;
-    }
-    .blob-table-cell--data {
-      font-size:  0.875rem;
-      color:      var(--color-text-default, rgba(0,0,0,0.8));
-      background: transparent;
-    }
-
-    /* ---- Alignment ---- */
-    .blob-table-cell--center { text-align: center; }
-    .blob-table-cell--right  { text-align: right; }
-
-    /* ---- Inner flex wrapper ---- */
-    .blob-table-cell__inner {
-      display:     flex;
-      align-items: center;
-      gap:         0.375rem;
-    }
-    .blob-table-cell--center .blob-table-cell__inner { justify-content: center; }
-    .blob-table-cell--right  .blob-table-cell__inner { justify-content: flex-end; }
-
-    /* ---- Sort button ---- */
-    .blob-table-cell--sortable { cursor: pointer; user-select: none; }
-    .blob-table-cell--sortable:hover { color: var(--color-text-primary, #000); }
-
-    .blob-table-cell__sort {
-      display:        inline-flex;
-      align-items:    center;
-      justify-content: center;
-      background:     transparent;
-      border:         none;
-      padding:        0;
-      margin:         0;
-      cursor:         pointer;
-      flex-shrink:    0;
-      color:          inherit;
-      line-height:    0;
-    }
-    .blob-table-cell__sort:focus-visible {
-      outline:        2px solid var(--color-primary, #000);
-      outline-offset: 2px;
-      border-radius:  2px;
-    }
-
-    /* Sort icon arrows — both dim when unsorted */
-    .blob-table-cell__sort-icon .sa-up,
-    .blob-table-cell__sort-icon .sa-dn { opacity: 0.25; transition: opacity 0.15s ease; }
-
-    .blob-table-cell--asc  .blob-table-cell__sort-icon .sa-up { opacity: 1; }
-    .blob-table-cell--asc  .blob-table-cell__sort-icon .sa-dn { opacity: 0.25; }
-    .blob-table-cell--desc .blob-table-cell__sort-icon .sa-dn { opacity: 1; }
-    .blob-table-cell--desc .blob-table-cell__sort-icon .sa-up { opacity: 0.25; }
-
-    /* If sortable but unsorted — show on hover */
-    .blob-table-cell--sortable:not(.blob-table-cell--asc):not(.blob-table-cell--desc):hover
-      .blob-table-cell__sort-icon .sa-up { opacity: 0.5; }
-
-    /* ---- aria-sort attribute used for accessibility ---- */
-  `;
-  document.head.appendChild(style);
-}
-
 // ---------------------------------------------------------------------------
 // Sort icon SVG
 // ---------------------------------------------------------------------------
@@ -181,7 +89,6 @@ export class TableCell {
   private _onSort: ((next: TableCellSortDir) => void) | undefined;
 
   constructor(options: TableCellOptions = {}) {
-    injectStyles();
     this._dir    = options.sortDir ?? null;
     this._onSort = options.onSort;
     this.element = this.build(options);

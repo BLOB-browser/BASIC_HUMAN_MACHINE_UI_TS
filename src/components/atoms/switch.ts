@@ -44,81 +44,6 @@ import { Button } from './button';
 import type { ButtonSize } from './button';
 
 // ---------------------------------------------------------------------------
-// Style injection
-// ---------------------------------------------------------------------------
-let _stylesInjected = false;
-
-function injectStyles(): void {
-  if (_stylesInjected || typeof document === 'undefined') return;
-  _stylesInjected = true;
-
-  const style = document.createElement('style');
-  style.dataset['bhmui'] = 'blob-switch';
-
-  style.textContent = `
-    /* Container ------------------------------------------------------------- */
-    .blob-switch {
-      display:          inline-flex;
-      border:           1px solid var(--color-border, #e5e5e5);
-      border-radius:    var(--radius-m, 6px);
-      overflow:         hidden;
-      background-color: var(--color-surface, #f5f5f5);
-    }
-
-    /* Override Button styles inside switch ---------------------------------- */
-    .blob-switch > .blob-button {
-      border-radius:    0;
-      border-top:       none;
-      border-bottom:    none;
-      border-left:      none;
-      border-right:     1px solid var(--color-border, #e5e5e5);
-      background-color: transparent;
-      color:            var(--color-text-default, rgba(0, 0, 0, 0.8));
-      transition:       background-color 0.15s ease, color 0.15s ease;
-      /* Reset hover opacity change from base .blob-button */
-      opacity:          1;
-    }
-    .blob-switch > .blob-button:last-child {
-      border-right: none;
-    }
-    /* Hover on inactive */
-    .blob-switch > .blob-button:hover:not(:disabled):not([aria-pressed="true"]) {
-      background-color: var(--color-surface-elevated, rgba(0,0,0,0.06));
-      opacity:          1;
-    }
-    .blob-switch > .blob-button:active:not(:disabled):not([aria-pressed="true"]) {
-      background-color: var(--color-border, #e5e5e5);
-      opacity:          1;
-    }
-
-    /* Active segment -------------------------------------------------------- */
-    .blob-switch > .blob-button[aria-pressed="true"] {
-      background-color: var(--color-primary, #000) !important;
-      color:            var(--color-on-primary, #fff) !important;
-      opacity:          1 !important;
-    }
-
-    /* Disabled segment ------------------------------------------------------ */
-    .blob-switch > .blob-button[disabled],
-    .blob-switch > .blob-button.blob-button--disabled {
-      opacity:        0.38;
-      cursor:         not-allowed;
-      pointer-events: none;
-    }
-
-    /* Focus ring scoped to switch ------------------------------------------- */
-    .blob-switch > .blob-button:focus-visible {
-      outline:        2px solid var(--color-primary, #000);
-      outline-offset: -2px;
-      z-index:        1;
-      position:       relative;
-    }
-  `;
-
-  document.head.appendChild(style);
-}
-
-// ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 export interface SwitchItem {
@@ -154,7 +79,6 @@ export class Switch {
   private onChange: ((value: string) => void) | undefined;
 
   constructor(options: SwitchOptions) {
-    injectStyles();
 
     if (!options.items || options.items.length < 2) {
       throw new Error('Switch requires at least 2 items.');
