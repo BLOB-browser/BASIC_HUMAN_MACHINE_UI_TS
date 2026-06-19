@@ -1,0 +1,12 @@
+{
+  "id": "d027893c-9dd2-4771-bd3e-da5bcc5c0ae2",
+  "name": "@building-local-open-bots/ui",
+  "slug": "basic-human-machine-ui-ts",
+  "type": "ui-library",
+  "outputs": [
+    "web"
+  ],
+  "github": null,
+  "path": "/Users/mars/Documents/GitHub/BLOB_2/BASIC_HUMAN_MACHINE_UI_TS",
+  "createdAt": "2026-06-17T20:11:18.457Z"
+}

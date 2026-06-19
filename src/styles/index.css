@@ -3,6 +3,9 @@
  * This loads all component styles in dependency order.
  */
 
+/* Fonts — must load before anything else so vars resolve correctly */
+@import './fonts.css';
+
 /* Foundation — density + device CSS vars (must come first) */
 @import './density.css';
 
