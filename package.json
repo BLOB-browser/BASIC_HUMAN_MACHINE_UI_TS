@@ -1,6 +1,6 @@
 {
-  "name": "@blob-browser/ui",
-  "version": "0.4.0",
+  "name": "basic-human-machine-ui",
+  "version": "0.4.1",
   "description": "BASIC HUMAN MACHINE UI \u2014 design tokens and components for the BLOB ecosystem",
   "type": "module",
   "repository": {
@@ -8,8 +8,7 @@
     "url": "https://github.com/BLOB-browser/BASIC_HUMAN_MACHINE_UI_TS.git"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "registry": "https://registry.npmjs.org"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
