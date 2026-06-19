@@ -1,4 +1,4 @@
-name: Publish @blob-browser/ui to npm
+name: Publish @blob-browser/ui to GitHub Packages
 
 # Triggers on a tag push matching v* (e.g. v0.4.0, v1.0.0-beta.1).
 # Before tagging, bump the version in package.json to match.
@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
 
     steps:
       - name: Checkout
@@ -26,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://npm.pkg.github.com'
           scope: '@blob-browser'
 
       - name: Install dependencies
@@ -48,4 +49,4 @@ jobs:
       - name: Publish to npm
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
