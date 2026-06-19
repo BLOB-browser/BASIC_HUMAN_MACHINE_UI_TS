@@ -56,7 +56,7 @@
   ],
   "scripts": {
     "build": "tsup && npm run build:css",
-    "build:css": "postcss src/styles/index.css -o dist/styles/index.css && cp src/styles/base.css dist/styles/base.css && cp src/styles/fonts.css dist/styles/fonts.css && mkdir -p dist/fonts && for f in src/styles/fonts/*.css; do cp \"$f\" \"dist/fonts/$(basename $f)\"; done",
+    "build:css": "postcss src/styles/index.css -o dist/styles/index.css && cp src/styles/base.css dist/styles/base.css && cp src/styles/fonts.css dist/styles/fonts.css && mkdir -p dist/fonts && ls src/styles/fonts/*.css 2>/dev/null && for f in src/styles/fonts/*.css; do cp \"$f\" \"dist/fonts/$(basename $f)\"; done || true",
     "dev": "tsup --watch",
     "storybook": "storybook dev --port 6006",
     "build-storybook": "storybook build",
